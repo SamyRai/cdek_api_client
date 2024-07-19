@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/oauth/token
+    body:
+      encoding: UTF-8
+      string: client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5&grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v1.10.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Fri, 19 Jul 2024 19:13:19 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Cache-Control:
+      - no-store
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTgsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiI3c1ZSTmVZYkc1MktWaDktQ1hGYnZwNEIwUGMiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.nFpn2zUhezAt410AH7YZDUZqezCoB5J1sHy_uaU-KHufc6dgc55aJ5qIpaFrPMKnrOk84iteJP3jXZl8F7Fz215pNampyMtIuc1QewjxIFYGLvIPuvXo6kmkLsMLW2a_RSpdYSYTJ4jRxyIsocEl5YNwM8lUd6oalBMA5NaGbsAL5aSkDt29WijK-c15cp9y7FP99PO-yQnT0AYBPXQXVga4eSWjoRVb20PlW9zt1DQWEfLLI-T0yynIHriOyvmuAQvv2qlwR2GxlPwcSa7VhS3TIIhkg2flzpk2Y0N3KnDcnAeoUu8JSNkFwexi1yy8RwyFloxeiF_pZuaLgJ3tbw","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"7sVRNeYbG52KVh9-CXFbvp4B0Pc"}'
+  recorded_at: Fri, 19 Jul 2024 19:13:18 GMT
+- request:
+    method: delete
+    uri: https://api.edu.cdek.ru/v2/webhooks/65f594f7-dba4-4896-85e5-c2fafd51908c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTgsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiI3c1ZSTmVZYkc1MktWaDktQ1hGYnZwNEIwUGMiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.nFpn2zUhezAt410AH7YZDUZqezCoB5J1sHy_uaU-KHufc6dgc55aJ5qIpaFrPMKnrOk84iteJP3jXZl8F7Fz215pNampyMtIuc1QewjxIFYGLvIPuvXo6kmkLsMLW2a_RSpdYSYTJ4jRxyIsocEl5YNwM8lUd6oalBMA5NaGbsAL5aSkDt29WijK-c15cp9y7FP99PO-yQnT0AYBPXQXVga4eSWjoRVb20PlW9zt1DQWEfLLI-T0yynIHriOyvmuAQvv2qlwR2GxlPwcSa7VhS3TIIhkg2flzpk2Y0N3KnDcnAeoUu8JSNkFwexi1yy8RwyFloxeiF_pZuaLgJ3tbw
+      User-Agent:
+      - Faraday v1.10.3
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Fri, 19 Jul 2024 19:13:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"entity":{"uuid":"65f594f7-dba4-4896-85e5-c2fafd51908c","retryable":false},"requests":[{"request_uuid":"851547e6-a748-4335-ba05-37954e645ed4","type":"DELETE","date_time":"2024-07-19T19:13:19+0000","state":"SUCCESSFUL"}]}'
+  recorded_at: Fri, 19 Jul 2024 19:13:19 GMT
+recorded_with: VCR 6.2.0

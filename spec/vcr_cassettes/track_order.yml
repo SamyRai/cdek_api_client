@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/oauth/token
+    body:
+      encoding: UTF-8
+      string: client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5&grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v1.10.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Fri, 19 Jul 2024 19:13:17 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTcsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJqczc1dEVPUjBFWlRIaW80ejJNd29OaHFpdFEiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.LBMsf-1kOdGznmhyxx5bREO_lqJrNZZzSRdqGUZetjOELy-CF-LVx7AjKpSQKxY8XJf_gk0XcWlatDeUxBpJ-1ooYY2jBJ9gRmgVs5r6lOlKi9Fyul3HPJVh0leoLDsu6-TtYnJpvlm64sU5d20V9WGiKj1DpY7Zlek9Ej7h2PNFeMHmt2usFSwOq3wDbxX08EDTwEQF6KEFrtDex_rZ1SAE9MM6RwlJjiUuKWdCytLjGAoM4lKJ0mXTIk5lfmf8xvHv1wmjNP47LpZAYMTr36KoM-uyec8y2zUXK74bw0I5jqQu9wc1_SAxRvPoZ6DQijLH3ixMW9NeBjS5IP10mA","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"js75tEOR0EZTHio4z2MwoNhqitQ"}'
+  recorded_at: Fri, 19 Jul 2024 19:13:17 GMT
+- request:
+    method: get
+    uri: https://api.edu.cdek.ru/v2/orders/b0f6a6bb-5607-485c-98f6-6035fd021276
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTcsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJqczc1dEVPUjBFWlRIaW80ejJNd29OaHFpdFEiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.LBMsf-1kOdGznmhyxx5bREO_lqJrNZZzSRdqGUZetjOELy-CF-LVx7AjKpSQKxY8XJf_gk0XcWlatDeUxBpJ-1ooYY2jBJ9gRmgVs5r6lOlKi9Fyul3HPJVh0leoLDsu6-TtYnJpvlm64sU5d20V9WGiKj1DpY7Zlek9Ej7h2PNFeMHmt2usFSwOq3wDbxX08EDTwEQF6KEFrtDex_rZ1SAE9MM6RwlJjiUuKWdCytLjGAoM4lKJ0mXTIk5lfmf8xvHv1wmjNP47LpZAYMTr36KoM-uyec8y2zUXK74bw0I5jqQu9wc1_SAxRvPoZ6DQijLH3ixMW9NeBjS5IP10mA
+      User-Agent:
+      - Faraday v1.10.3
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Fri, 19 Jul 2024 19:13:17 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Pragma:
+      - no-cache
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJlbnRpdHkiOnsidXVpZCI6ImIwZjZhNmJiLTU2MDctNDg1Yy05OGY2LTYwMzVmZDAyMTI3NiIsInR5cGUiOjEsIm51bWJlciI6IjAyamMxYnYxbG4iLCJ0YXJpZmZfY29kZSI6NCwiY29tbWVudCI6IkVzdCByZXBlbGxlbmR1cyBpbiBzaXQuIiwic2VuZGVyIjp7Im5hbWUiOiLQpNC40LvQsNGC0L7QstCwINCc0LDRgNC40Y8g0K3QtNGD0LDRgNC00L7QstC90LAiLCJlbWFpbCI6Impvc3VlLnF1aXR6b25AY3JvbmEudGVzdCIsInBob25lcyI6W3sibnVtYmVyIjoiKzc0NDU0ODIyMDIxIn1dfSwicmVjaXBpZW50Ijp7Im5hbWUiOiLQn9GA0L7RhdC+0YDQvtCy0LAg0JfQvtGPINCh0LXQvNGR0L3QvtCy0L3QsCIsImVtYWlsIjoicmljaGllX2ZhZGVsQHdlc3QtaG93ZWxsLmV4YW1wbGUiLCJwaG9uZXMiOlt7Im51bWJlciI6Iis3MTMwNTk1OTc2OCJ9XX0sImZyb21fbG9jYXRpb24iOnsiY29kZSI6MTY1ODQsImNpdHkiOiLQmtC40YDQvtCyIiwiYWRkcmVzcyI6Ijg1MTM1MiDQoNC+0YHRgdC40Y8sINCR0YDRj9C90YHQuiwg0L/Qu9C+0YnQsNC00Ywg0JrQvtC80YHQvtC80L7Qu9GM0YHQutCw0Y8sIDY0NCDQutCyLiAzMzkifSwidG9fbG9jYXRpb24iOnsiY29kZSI6MTY1ODQsImNpdHkiOiLQotGD0LvQsCIsImFkZHJlc3MiOiI2Mjc3NjEg0KDQvtGB0YHQuNGPLCDQmtGD0YDRgdC6LCDQp9C10YXQvtCy0LAg0YPQu9C40YbQsCwgMTU2In0sInNlcnZpY2VzIjpbeyJjb2RlIjoiSU5TVVJBTkNFIn1dLCJwYWNrYWdlcyI6W3sibnVtYmVyIjoic3BxODVnbWYzbSIsIndlaWdodCI6MjQ3MCwibGVuZ3RoIjo3Niwid2lkdGgiOjU0LCJoZWlnaHQiOjQ4LCJjb21tZW50IjoiRG9sb3IgcmVwdWRpYW5kYWUgbnVsbGEgcmVwZWxsZW5kdXMuIiwiaXRlbXMiOlt7Im5hbWUiOiLQm9C10LPQutC40Lkg0JDQu9GO0LzQuNC90LjQtdCy0YvQuSDQm9Cw0LzQv9CwIiwid2FyZV9rZXkiOiJtaWJpbCIsInBheW1lbnQiOnsidmFsdWUiOjc0N30sIndlaWdodCI6MzIwMSwiYW1vdW50IjoyLCJjb3N0IjoyNTJ9XX1dLCJzdGF0dXNlcyI6W3siY29kZSI6IklOVkFMSUQiLCJuYW1lIjoi0J3QtdC60L7RgNGA0LXQutGC0L3Ri9C5INC30LDQutCw0LciLCJkYXRlX3RpbWUiOiIyMDI0LTA3LTE5VDE5OjEzOjE3KzAwMDAiLCJjaXR5Ijoi0J7RhNC40YEg0KHQlNCt0JoifSx7ImNvZGUiOiJBQ0NFUFRFRCIsIm5hbWUiOiLQn9GA0LjQvdGP0YIiLCJkYXRlX3RpbWUiOiIyMDI0LTA3LTE5VDE5OjEzOjE3KzAwMDAiLCJjaXR5Ijoi0J7RhNC40YEg0KHQlNCt0JoifV19LCJyZXF1ZXN0cyI6W3sicmVxdWVzdF91dWlkIjoiMTE2ZjYzODEtMGZlMS00OGExLTkxZWYtNGMwYmYyZjU2MDYzIiwidHlwZSI6IkNSRUFURSIsImRhdGVfdGltZSI6IjIwMjQtMDctMTlUMTk6MTM6MTcrMDAwMCIsInN0YXRlIjoiSU5WQUxJRCIsImVycm9ycyI6W3siY29kZSI6IkVSUl9JTlZBTElEX1RBUklGRlRZUEVDT0RFIiwibWVzc2FnZSI6ItCd0LXQstC10YDQvdC+INC30LDQtNCw0L0g0YLQuNC/INGC0LDRgNC40YTQsCJ9XX1dLCJyZWxhdGVkX2VudGl0aWVzIjpbXX0=
+  recorded_at: Fri, 19 Jul 2024 19:13:17 GMT
+recorded_with: VCR 6.2.0

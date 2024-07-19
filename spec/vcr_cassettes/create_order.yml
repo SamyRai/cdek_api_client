@@ -1,0 +1,112 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/oauth/token
+    body:
+      encoding: UTF-8
+      string: client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5&grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v1.10.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Fri, 19 Jul 2024 19:13:16 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Pragma:
+      - no-cache
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTYsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJjb250cmFnZW50LXV1aWQ6ZWQ3NWVjZjQtMzBlZC00MTUzLWFmZTktZWI4MGJiNTEyZjIyIiwic29saWQtYWRkcmVzczpmYWxzZSIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiIyQm5XN0k1SjdKdUIwNm1tR2RJTnZYeW1oVlEiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.ZW9TJPzELm2wlyEc0FA52GT-URlXy6C5kHpymZCgHYawca0L-zvCya6B-61TGKDSv-_B7Q-7nrQh9ZPy6bXbNG__l5HdxwfaIxlBEa2hOHwQvRed6fezS0iXMWyaHNKvRD9N9DHxJY-h7wZVPUOOnv37oebKDe-U4Ne_XYNxxvC_-afE06axYd0HmH1hg4b-E5W57ndTNVZG6bBo2qnycV4dz0YY3qjnCmYO2-LJip8zvNo3Fe7NsoAxMPddp74HMwcoL8KuRzH_3JhsVCHjtYZxEsFgkFR_csmBpbVXuAYDVWx0eHnavMByUXvWj2Spr6os6PJ_PJsjuJ8JiB8pjg","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"2BnW7I5J7JuB06mmGdINvXymhVQ"}'
+  recorded_at: Fri, 19 Jul 2024 19:13:16 GMT
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/orders
+    body:
+      encoding: UTF-8
+      string: '{"type":1,"number":"02jc1bv1ln","tariff_code":4,"comment":"Est repellendus
+        in sit.","shipment_point":null,"delivery_point":null,"from_location":{"code":16584,"city":"Киров","address":"851352
+        Россия, Брянск, площадь Комсомольская, 644 кв. 339"},"to_location":{"code":16584,"city":"Тула","address":"627761
+        Россия, Курск, Чехова улица, 156"},"recipient":{"name":"Прохорова Зоя Семёновна","phones":[{"number":"+71305959768"}],"email":"richie_fadel@west-howell.example"},"sender":{"name":"Филатова
+        Мария Эдуардовна","phones":[{"number":"+74454822021"}],"email":"josue.quitzon@crona.test"},"services":[{"code":"INSURANCE","price":967,"name":"Лоснящийся
+        Мраморный Часы"}],"packages":[{"number":"spq85gmf3m","comment":"Dolor repudiandae
+        nulla repellendus.","height":48,"length":76,"weight":2470,"width":54,"items":[{"ware_key":"mibil","payment":{"value":747,"currency":1},"name":"Легкий
+        Алюминиевый Лампа","cost":252,"amount":2,"weight":3201,"url":null}]}]}'
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTYsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJjb250cmFnZW50LXV1aWQ6ZWQ3NWVjZjQtMzBlZC00MTUzLWFmZTktZWI4MGJiNTEyZjIyIiwic29saWQtYWRkcmVzczpmYWxzZSIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiIyQm5XN0k1SjdKdUIwNm1tR2RJTnZYeW1oVlEiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.ZW9TJPzELm2wlyEc0FA52GT-URlXy6C5kHpymZCgHYawca0L-zvCya6B-61TGKDSv-_B7Q-7nrQh9ZPy6bXbNG__l5HdxwfaIxlBEa2hOHwQvRed6fezS0iXMWyaHNKvRD9N9DHxJY-h7wZVPUOOnv37oebKDe-U4Ne_XYNxxvC_-afE06axYd0HmH1hg4b-E5W57ndTNVZG6bBo2qnycV4dz0YY3qjnCmYO2-LJip8zvNo3Fe7NsoAxMPddp74HMwcoL8KuRzH_3JhsVCHjtYZxEsFgkFR_csmBpbVXuAYDVWx0eHnavMByUXvWj2Spr6os6PJ_PJsjuJ8JiB8pjg
+      User-Agent:
+      - Faraday v1.10.3
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Fri, 19 Jul 2024 19:13:17 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '223'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Expires:
+      - '0'
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      X-Content-Type-Options:
+      - nosniff
+      Location:
+      - http://api-v2-integration.edu.k8s-local.cdek.ru:8000/v2/orders/b0f6a6bb-5607-485c-98f6-6035fd021276
+      Pragma:
+      - no-cache
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+    body:
+      encoding: UTF-8
+      string: '{"entity":{"uuid":"b0f6a6bb-5607-485c-98f6-6035fd021276"},"requests":[{"request_uuid":"116f6381-0fe1-48a1-91ef-4c0bf2f56063","type":"CREATE","date_time":"2024-07-19T19:13:17+0000","state":"ACCEPTED"}],"related_entities":[]}'
+  recorded_at: Fri, 19 Jul 2024 19:13:17 GMT
+recorded_with: VCR 6.2.0

@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/oauth/token
+    body:
+      encoding: UTF-8
+      string: client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5&grant_type=client_credentials
+    headers:
+      User-Agent:
+      - Faraday v1.10.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Fri, 19 Jul 2024 19:13:17 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      X-Xss-Protection:
+      - 1; mode=block
+      Cache-Control:
+      - no-store
+      X-Frame-Options:
+      - DENY
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      Pragma:
+      - no-cache
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTcsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFwaS12ZXJzaW9uOjEuMSIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJ6WlJUUXhLU1dveDJBNkxSWEhTTzd1ejJWVG8iLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.g9Rlnw93z6bEvHd4C5RURvJG14bZwnpWQAk69BvrJ6Y7Ef5IdwCJrGiy4TuZJiu-PGqVpIU4CbUa5UbGsEn6HpAlCfMJ646SOS6TpwKAwx3sqct8hg5WJFkiMokLim-nL0lOgsN7Ns3p_jtmtKAE_ZvxsZ7V1FAeUrqBb8uhz6Zwb4utLbjK22fUQNfp86mReAyD2z7Q9Es4-06-LqZ526hkKqn4oAPy8ApRkGD8n5-nazTRpk1S38c07tmZBhUyYSCYdc3EQUzN1xLunvO0ae_LvzAiUytUEuVrgAEyQh9i_3dKZCOgzlyaCiBfKpiOPVDezWh1bdwpPvCKold5Eg","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"zZRTQxKSWox2A6LRXHSO7uz2VTo"}'
+  recorded_at: Fri, 19 Jul 2024 19:13:17 GMT
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/calculator/tariff
+    body:
+      encoding: UTF-8
+      string: '{"type":1,"currency":1,"from_location":{"code":16584,"city":"Санкт-Петербург","address":"370513
+        Россия, Тольятти, Юбилейная улица, 979"},"to_location":{"code":16584,"city":"Омск","address":"706191
+        Россия, Иркутск, проспект Школьная, 570"},"packages":[{"number":"be7bxnbt8y","comment":"Optio
+        nihil rerum ad.","height":52,"length":70,"weight":2696,"width":17,"items":[{"ware_key":"65nlf","payment":{"value":633,"currency":1},"name":"Тяжёлый
+        Алюминиевый Стол","cost":47,"amount":2,"weight":3366,"url":null}]}],"tariff_code":139}'
+    headers:
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTcsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFwaS12ZXJzaW9uOjEuMSIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJ6WlJUUXhLU1dveDJBNkxSWEhTTzd1ejJWVG8iLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.g9Rlnw93z6bEvHd4C5RURvJG14bZwnpWQAk69BvrJ6Y7Ef5IdwCJrGiy4TuZJiu-PGqVpIU4CbUa5UbGsEn6HpAlCfMJ646SOS6TpwKAwx3sqct8hg5WJFkiMokLim-nL0lOgsN7Ns3p_jtmtKAE_ZvxsZ7V1FAeUrqBb8uhz6Zwb4utLbjK22fUQNfp86mReAyD2z7Q9Es4-06-LqZ526hkKqn4oAPy8ApRkGD8n5-nazTRpk1S38c07tmZBhUyYSCYdc3EQUzN1xLunvO0ae_LvzAiUytUEuVrgAEyQh9i_3dKZCOgzlyaCiBfKpiOPVDezWh1bdwpPvCKold5Eg
+      User-Agent:
+      - Faraday v1.10.3
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Fri, 19 Jul 2024 19:13:18 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      X-Xss-Protection:
+      - 1; mode=block
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Frame-Options:
+      - DENY
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"delivery_sum":2180.0,"period_min":8,"period_max":12,"calendar_min":8,"calendar_max":12,"weight_calc":12376,"services":[{"code":"INSURANCE","sum":0.00,"total_sum":0.00,"discount_percent":0,"discount_sum":0.00,"vat_rate":20,"vat_sum":0.00}],"total_sum":2616.0,"currency":"RUB"}'
+  recorded_at: Fri, 19 Jul 2024 19:13:17 GMT
+recorded_with: VCR 6.2.0
