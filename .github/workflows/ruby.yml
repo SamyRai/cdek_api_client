@@ -12,27 +12,46 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
+      contents: write
+
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
+
       - name: Install dependencies
         run: |
           gem install bundler
           bundle install
+
       - name: Run tests
         run: bundle exec rspec
-      - name: Build gem
-        run: gem build cdek_api_client.gemspec
-      - name: Publish to GitHub Packages
-        run: |
-          gem push --key github --host https://rubygems.pkg.github.com/OWNER $(GEM_NAME)-$(GEM_VERSION).gem
-        env:
-          RUBYGEMS_API_KEY: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Publish to GitHub
+      #   run: |
+      #     mkdir -p $HOME/.gem
+      #     touch $HOME/.gem/credentials
+      #     chmod 0600 $HOME/.gem/credentials
+      #     printf -- "---\n:github: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+      #     gem build *.gemspec
+      #     gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
+      #   env:
+      #     GEM_HOST_API_KEY: ${{secrets.GITHUB_TOKEN}}
+      #     OWNER: ${{ github.repository_owner }}
+      #   # if: ${{ steps.release.outputs.release_created }}
       - name: Publish to RubyGems
-        if: github.ref == 'refs/heads/main'
-        run: gem push $(GEM_NAME)-$(GEM_VERSION).gem
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+          gem build *.gemspec
+          gem push *.gem
         env:
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+          GEM_HOST_API_KEY: "${{ secrets.RUBYGEMS_API_KEY }}"
+        # if: ${{ steps.release.outputs.release_created }}

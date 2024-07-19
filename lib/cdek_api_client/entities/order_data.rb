@@ -23,7 +23,8 @@ module CDEKApiClient
       validates :packages, type: :array, presence: true, items: [Package]
       validates :comment, type: :string
 
-      def initialize(type:, number:, tariff_code:, from_location:, to_location:, recipient:, sender:, packages:, comment: nil, shipment_point: nil, delivery_point: nil, services: [])
+      def initialize(type:, number:, tariff_code:, from_location:, to_location:, recipient:, sender:, packages:,
+                     comment: nil, shipment_point: nil, delivery_point: nil, services: [])
         @type = type
         @number = number
         @tariff_code = tariff_code
@@ -52,7 +53,7 @@ module CDEKApiClient
           recipient: @recipient,
           sender: @sender,
           services: @services,
-          packages: @packages,
+          packages: @packages
         }.to_json
       end
     end

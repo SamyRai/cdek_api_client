@@ -10,7 +10,8 @@ module CDEKApiClient
       attr_accessor :name, :phones, :email
 
       validates :name, type: :string, presence: true
-      validates :phones, type: :array, items: [{ type: :hash, schema: { number: { type: :string, presence: true } } }], presence: true
+      validates :phones, type: :array, items: [{ type: :hash, schema: { number: { type: :string, presence: true } } }],
+                         presence: true
       validates :email, type: :string, presence: true
 
       def initialize(name:, phones:, email:)

@@ -163,14 +163,14 @@ end
 
 ### Getting Location Data
 
-To retrieve location data such as cities and regions supported by CDEK, use the `get_cities` and `get_regions` methods of the `Location` class:
+To retrieve location data such as cities and regions supported by CDEK, use the `cities` and `regions` methods of the `Location` class:
 
 ```ruby
 location_client = CDEKApiClient::Location.new(client)
 
 # Fetching cities
 begin
-  cities = location_client.get_cities
+  cities = location_client.cities
   puts "Cities: #{cities}"
 rescue => e
   puts "Error fetching cities: #{e.message}"
@@ -178,7 +178,7 @@ end
 
 # Fetching regions
 begin
-  regions = location_client.get_regions
+  regions = location_client.regions
   puts "Regions: #{regions}"
 rescue => e
   puts "Error fetching regions: #{e.message}"

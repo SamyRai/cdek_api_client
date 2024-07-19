@@ -20,7 +20,6 @@ require_relative 'cdek_api_client/entities/payment'
 require_relative 'cdek_api_client/entities/service'
 require_relative 'cdek_api_client/entities/webhook'
 
-
 module CDEKApiClient
   class Error < StandardError; end
 

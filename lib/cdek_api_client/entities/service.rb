@@ -1,5 +1,5 @@
 # frozen_string_literal: true
- 
+
 require_relative 'validatable'
 require_relative 'payment'
 

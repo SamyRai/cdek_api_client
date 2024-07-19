@@ -155,12 +155,12 @@ end
 
 ### Урнашкан җир турында мәгълүмат алу
 
-CDEK тарафыннан якланган шәһәрләр һәм төбәкләр кебек урнашкан җир турында мәгълүмат алу өчен, `get_cities` һәм `get_regions` методларын кулланыгыз:
+CDEK тарафыннан якланган шәһәрләр һәм төбәкләр кебек урнашкан җир турында мәгълүмат алу өчен, `cities` һәм `regions` методларын кулланыгыз:
 
 ```ruby
 # Шәһәрләр исемлеген алу
 begin
-  cities = client.get_cities
+  cities = client.cities
   puts "Города: #{cities}"
 rescue => e
   puts "Ошибка при получении списка городов: #{e.message}"
@@ -168,7 +168,7 @@ end
 
 # Төбәкләр исемлеген алу
 begin
-  regions = client.get_regions
+  regions = client.regions
   puts "Регионы: #{regions}"
 rescue => e
   puts "Ошибка при получении списка регионов: #{e.message}"

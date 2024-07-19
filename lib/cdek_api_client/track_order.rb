@@ -3,7 +3,7 @@
 module CDEKApiClient
   class TrackOrder
     BASE_URL = ENV.fetch('CDEK_API_URL', 'https://api.edu.cdek.ru/v2')
-    TRACK_ORDER_URL = "#{BASE_URL}/orders/%{uuid}"
+    TRACK_ORDER_URL = "#{BASE_URL}/orders/%<uuid>s".freeze
 
     def initialize(client)
       @client = client
