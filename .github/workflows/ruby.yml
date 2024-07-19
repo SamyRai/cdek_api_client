@@ -10,30 +10,29 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7
-    - name: Install dependencies
-      run: |
-        gem install bundler
-        bundle install
-    - name: Run tests
-      run: bundle exec rspec
-    - name: Build gem
-      run: gem build cdek_api_client.gemspec
-    - name: Publish to GitHub Packages
-      run: |
-        gem push --key github --host https://rubygems.pkg.github.com/OWNER $(GEM_NAME)-$(GEM_VERSION).gem
-      env:
-        RUBYGEMS_API_KEY: ${{ secrets.GITHUB_TOKEN }}
-    - name: Publish to RubyGems
-      if: github.ref == 'refs/heads/main'
-      run: gem push $(GEM_NAME)-$(GEM_VERSION).gem
-      env:
-        RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+      - name: Run tests
+        run: bundle exec rspec
+      - name: Build gem
+        run: gem build cdek_api_client.gemspec
+      - name: Publish to GitHub Packages
+        run: |
+          gem push --key github --host https://rubygems.pkg.github.com/OWNER $(GEM_NAME)-$(GEM_VERSION).gem
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to RubyGems
+        if: github.ref == 'refs/heads/main'
+        run: gem push $(GEM_NAME)-$(GEM_VERSION).gem
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
