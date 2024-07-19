@@ -3,7 +3,7 @@
 module CDEKApiClient
   class Webhook
     BASE_URL = ENV.fetch('CDEK_API_URL', 'https://api.edu.cdek.ru/v2')
-    WEBHOOKS_URL = "#{BASE_URL}/webhooks"
+    WEBHOOKS_URL = "#{BASE_URL}/webhooks".freeze
 
     def initialize(client)
       @client = client
@@ -42,7 +42,9 @@ module CDEKApiClient
     end
 
     def validate_uuid(uuid)
-      raise 'Invalid UUID format' unless uuid.match?(/\A[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}\z/)
+      return if uuid.match?(/\A[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}\z/)
+
+      raise 'Invalid UUID format'
     end
 
     def handle_response(response)

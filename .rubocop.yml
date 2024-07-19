@@ -9,7 +9,10 @@
 #
 # See https://docs.rubocop.org/rubocop/configuration
 
+require: rubocop-rspec
+
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 3.3
   Exclude:
     - 'db/schema.rb'

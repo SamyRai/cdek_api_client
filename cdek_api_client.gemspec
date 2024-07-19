@@ -16,16 +16,13 @@ Gem::Specification.new do |spec|
   spec.files         = Dir['lib/**/*', 'README.md']
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'faraday'
-  spec.add_dependency 'base64'
-  spec.add_dependency 'faraday_middleware'
-  spec.add_development_dependency 'faker'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'vcr'
-  spec.add_development_dependency 'webmock'
+  spec.required_ruby_version = '>= 3.0'
+
+  spec.add_dependency 'base64', '~> 0.2.0'
+  spec.add_dependency 'faraday', '~> 1.10.3'
+  spec.add_dependency 'faraday_middleware', '~> 1.2.0'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'http://gihub.com/glowing-pixels/cdek_api_client'
+  spec.metadata['source_code_uri'] = 'http://github.com/glowing-pixels/cdek_api_client'
   spec.metadata['changelog_uri'] = 'http://www.glowing-pixels.com/cdek_api_client/CHANGELOG.md'
 end

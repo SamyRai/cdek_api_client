@@ -38,9 +38,11 @@ module CDEKApiClient
           raise "#{attribute} must be a String" unless value.is_a?(String)
         when :integer
           raise "#{attribute} must be an Integer" unless value.is_a?(Integer)
+
           validate_positive(attribute, value, rule)
         when :array
           raise "#{attribute} must be an Array" unless value.is_a?(Array)
+
           validate_array_items(attribute, value, rule)
         when :object
           validate_object(attribute, value, rule)
@@ -61,14 +63,14 @@ module CDEKApiClient
             validate_object(attribute, item, rule[:items].first)
           else
             rule[:items].each do |key, val_rule|
-              validate_presence(key, item, {type: val_rule})
-              validate_type(key, item, {type: val_rule})
+              validate_presence(key, item, { type: val_rule })
+              validate_type(key, item, { type: val_rule })
             end
           end
         end
       end
 
-      def validate_object(attribute, object, rule)
+      def validate_object(_attribute, object, _rule)
         object.class.validations.each do |attr, validation_rule|
           value = object.send(attr)
           validate_presence(attr, value, validation_rule)
@@ -76,7 +78,7 @@ module CDEKApiClient
         end
       end
 
-      def validate_hash(attribute, hash, rule)
+      def validate_hash(_attribute, hash, rule)
         rule[:schema].each do |attr, validation_rule|
           value = hash[attr]
           validate_presence(attr, value, validation_rule)
