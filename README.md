@@ -8,7 +8,6 @@ This Readme is also available in:
 
 - [Russian](README_RUS.md)
 - [Tatar](README_TAT.md)
-- [German](README_DE.md)
 
 ## Table of Contents
 
@@ -36,6 +35,8 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'cdek_api_client'
 ```
+
+````
 
 And then execute:
 
@@ -66,7 +67,7 @@ client = CDEKApiClient::Client.new(client_id, client_secret)
 
 ### Creating an Order
 
-To create an order, you need to create the necessary entities (`OrderData`, `Recipient`, `Sender`, `Package`, and `Item`) and then pass them to the `create_order` method of the `Client` class:
+To create an order, you need to create the necessary entities (`OrderData`, `Recipient`, `Sender`, `Package`, and `Item`) and then pass them to the `create_order` method of the `Order` class:
 
 ```ruby
 recipient = CDEKApiClient::Entities::Recipient.new(
@@ -107,12 +108,15 @@ order_data = CDEKApiClient::Entities::OrderData.new(
   comment: 'Test order',
   recipient: recipient,
   sender: sender,
-  services: [{ code: 'DELIV_WEEKEND' }, { code: 'INSURANCE', parameter: 10000 }],
+  from_location: { code: 44 },
+  to_location: { code: 270 },
   packages: [package]
 )
 
+order_client = CDEKApiClient::Order.new(client)
+
 begin
-  order_response = client.create_order(order_data)
+  order_response = order_client.create(order_data)
   puts "Order created successfully: #{order_response}"
 rescue => e
   puts "Error creating order: #{e.message}"
@@ -121,13 +125,13 @@ end
 
 ### Tracking an Order
 
-To track an order, use the `track_order` method with the order UUID:
+To track an order, use the `track` method of the `Order` class with the order UUID:
 
 ```ruby
 order_uuid = 'order_uuid_from_created_order_response'
 
 begin
-  tracking_info = client.track_order(order_uuid)
+  tracking_info = order_client.track(order_uuid)
   puts "Tracking info: #{tracking_info}"
 rescue => e
   puts "Error tracking order: #{e.message}"
@@ -136,19 +140,21 @@ end
 
 ### Calculating Tariff
 
-To calculate the tariff, use the `calculate_tariff` method with the necessary tariff data:
+To calculate the tariff, use the `calculate` method of the `Tariff` class with the necessary tariff data:
 
 ```ruby
-tariff_data = {
+tariff_data = CDEKApiClient::Entities::TariffData.new(
   type: 1,
   currency: 'RUB',
   from_location: { code: 44 },
   to_location: { code: 137 },
   packages: [{ weight: 500, length: 10, width: 10, height: 10 }]
-}
+)
+
+tariff_client = CDEKApiClient::Tariff.new(client)
 
 begin
-  tariff_response = client.calculate_tariff(tariff_data)
+  tariff_response = tariff_client.calculate(tariff_data)
   puts "Tariff calculated: #{tariff_response}"
 rescue => e
   puts "Error calculating tariff: #{e.message}"
@@ -157,12 +163,14 @@ end
 
 ### Getting Location Data
 
-To retrieve location data such as cities and regions supported by CDEK, use the `get_cities` and `get_regions` methods:
+To retrieve location data such as cities and regions supported by CDEK, use the `get_cities` and `get_regions` methods of the `Location` class:
 
 ```ruby
+location_client = CDEKApiClient::Location.new(client)
+
 # Fetching cities
 begin
-  cities = client.get_cities
+  cities = location_client.get_cities
   puts "Cities: #{cities}"
 rescue => e
   puts "Error fetching cities: #{e.message}"
@@ -170,7 +178,7 @@ end
 
 # Fetching regions
 begin
-  regions = client.get_regions
+  regions = location_client.get_regions
   puts "Regions: #{regions}"
 rescue => e
   puts "Error fetching regions: #{e.message}"
@@ -182,9 +190,11 @@ end
 Webhooks allow your application to receive real-time notifications about various events related to your shipments. To set up a webhook, register a URL where CDEK will send HTTP POST requests with event data:
 
 ```ruby
+webhook_client = CDEKApiClient::Webhook.new(client)
+
 webhook_url = 'https://yourapp.com/webhooks/cdek'
 begin
-  response = client.register_webhook(webhook_url, event_types: ['ORDER_STATUS', 'DELIVERY_STATUS'])
+  response = webhook_client.register(webhook_url, event_types: ['ORDER_STATUS', 'DELIVERY_STATUS'])
   puts "Webhook registered: #{response}"
 rescue => e
   puts "Error registering webhook: #{e.message}"
@@ -196,7 +206,7 @@ To retrieve and delete registered webhooks:
 ```ruby
 # Fetching webhooks
 begin
-  webhooks = client.get_webhooks
+  webhooks = webhook_client.get_webhooks
   puts "Webhooks: #{webhooks}"
 rescue => e
   puts "Error fetching webhooks: #{e.message}"
@@ -205,7 +215,7 @@ end
 # Deleting a webhook
 webhook_id = 'webhook_id_to_delete'
 begin
-  response = client.delete_webhook(webhook_id)
+  response = webhook_client.delete(webhook_id)
   puts "Webhook deleted: #{response}"
 rescue => e
   puts "Error deleting webhook: #{e.message}"
@@ -226,6 +236,8 @@ Attributes:
 - `comment` (String): The comment for the order.
 - `recipient` (Recipient, required): The recipient details.
 - `sender` (Sender, required): The sender details.
+- `from_location` (Hash, required): The location details from where the order is shipped.
+- `to_location` (Hash, required): The location details to where the order is shipped.
 - `services` (Array): Additional services.
 - `packages` (Array, required): List of packages.
 
@@ -276,6 +288,14 @@ Attributes:
 - `weight` (Integer, required): The weight of the item.
 - `amount` (Integer, required): The amount of the item.
 
+## TODO List
+
+- [ ] Restructure the codebase for better organization.
+- [ ] Add mappings for CDEK internal codes.
+- [ ] Add more API endpoints and data entities.
+- [ ] Check all attributes for required and optional fields.
+- [ ] Add documentation for all classes and methods.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [https://github.com/your-username/cdek_api_client](https://github.com/your-username/cdek_api_client).
@@ -283,3 +303,4 @@ Bug reports and pull requests are welcome on GitHub at [https://github.com/your-
 ## License
 
 The gem is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+````

@@ -2,54 +2,56 @@
 
 [![Gem Version](https://badge.fury.io/rb/cdek_api_client.svg)](https://badge.fury.io/rb/cdek_api_client)
 
-A Ruby client for interacting with the CDEK API, providing functionalities for order creation, tracking, tariff calculation, location data retrieval, and webhook management. This gem ensures clean, robust, and maintainable code with proper validations.
+Ruby клиент для взаимодействия с API CDEK, предоставляющий функции для создания заказов, отслеживания, расчета тарифа, получения данных о местоположении и управления вебхуками. Этот гем обеспечивает чистый, надежный и поддерживаемый код с правильной валидацией.
 
-This Readme is also available in [English](README.md).
+Этот README также доступен на [английском языке](README.md).
+Этот README также доступен на [татарском языке](README_TAT.md).
 
-## Table of Contents
+## Содержание
 
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Initialization](#initialization)
-  - [Creating an Order](#creating-an-order)
-  - [Tracking an Order](#tracking-an-order)
-  - [Calculating Tariff](#calculating-tariff)
-  - [Getting Location Data](#getting-location-data)
-  - [Setting Up Webhooks](#setting-up-webhooks)
-- [Entities](#entities)
+- [Установка](#установка)
+- [Использование](#использование)
+  - [Инициализация](#инициализация)
+  - [Создание заказа](#создание-заказа)
+  - [Отслеживание заказа](#отслеживание-заказа)
+  - [Расчет тарифа](#расчет-тарифа)
+  - [Получение данных о местоположении](#получение-данных-о-местоположении)
+  - [Настройка вебхуков](#настройка-вебхуков)
+- [Сущности](#сущности)
   - [OrderData](#orderdata)
   - [Recipient](#recipient)
   - [Sender](#sender)
   - [Package](#package)
   - [Item](#item)
-- [Contributing](#contributing)
-- [License](#license)
+- [Содействие](#содействие)
+- [Лицензия](#лицензия)
 
-## Installation
+## Установка
 
-Add this line to your application's Gemfile:
+Добавьте эту строку в ваш Gemfile:
 
 ```ruby
 gem 'cdek_api_client'
 ```
+````
 
-And then execute:
+Затем выполните:
 
 ```sh
 bundle install
 ```
 
-Or install it yourself as:
+Или установите самостоятельно:
 
 ```sh
 gem install cdek_api_client
 ```
 
-## Usage
+## Использование
 
-### Initialization
+### Инициализация
 
-To use the CDEK API Client, you need to initialize it with your CDEK API credentials (client ID and client secret):
+Для использования CDEK API Client, необходимо инициализировать его с вашими учетными данными API CDEK (client ID и client secret):
 
 ```ruby
 require 'cdek_api_client'
@@ -60,25 +62,25 @@ client_secret = 'your_client_secret'
 client = CDEKApiClient::Client.new(client_id, client_secret)
 ```
 
-### Creating an Order
+### Создание заказа
 
-To create an order, you need to create the necessary entities (`OrderData`, `Recipient`, `Sender`, `Package`, and `Item`) and then pass them to the `create_order` method of the `Client` class:
+Чтобы создать заказ, необходимо создать необходимые сущности (`OrderData`, `Recipient`, `Sender`, `Package` и `Item`) и передать их методу `create_order` класса `Client`:
 
 ```ruby
 recipient = CDEKApiClient::Entities::Recipient.new(
-  name: 'John Doe',
+  name: 'Иван Иванов',
   phones: [{ number: '+79000000000' }],
-  email: 'johndoe@example.com'
+  email: 'ivanov@example.com'
 )
 
 sender = CDEKApiClient::Entities::Sender.new(
-  name: 'Sender Name',
+  name: 'Отправитель',
   phones: [{ number: '+79000000001' }],
   email: 'sender@example.com'
 )
 
 item = CDEKApiClient::Entities::Item.new(
-  name: 'Item 1',
+  name: 'Товар 1',
   ware_key: '00055',
   payment: 1000,
   cost: 1000,
@@ -92,7 +94,7 @@ package = CDEKApiClient::Entities::Package.new(
   length: 10,
   width: 10,
   height: 10,
-  comment: 'Package 1',
+  comment: 'Упаковка 1',
   items: [item]
 )
 
@@ -100,7 +102,7 @@ order_data = CDEKApiClient::Entities::OrderData.new(
   type: 1,
   number: 'TEST123',
   tariff_code: 1,
-  comment: 'Test order',
+  comment: 'Тестовый заказ',
   recipient: recipient,
   sender: sender,
   services: [{ code: 'DELIV_WEEKEND' }, { code: 'INSURANCE', parameter: 10000 }],
@@ -109,30 +111,30 @@ order_data = CDEKApiClient::Entities::OrderData.new(
 
 begin
   order_response = client.create_order(order_data)
-  puts "Order created successfully: #{order_response}"
+  puts "Заказ успешно создан: #{order_response}"
 rescue => e
-  puts "Error creating order: #{e.message}"
+  puts "Ошибка при создании заказа: #{e.message}"
 end
 ```
 
-### Tracking an Order
+### Отслеживание заказа
 
-To track an order, use the `track_order` method with the order UUID:
+Для отслеживания заказа используйте метод `track_order` с UUID заказа:
 
 ```ruby
-order_uuid = 'order_uuid_from_created_order_response'
+order_uuid = 'uuid_заказа_из_ответа_на_создание_заказа'
 
 begin
   tracking_info = client.track_order(order_uuid)
-  puts "Tracking info: #{tracking_info}"
+  puts "Информация об отслеживании: #{tracking_info}"
 rescue => e
-  puts "Error tracking order: #{e.message}"
+  puts "Ошибка при отслеживании заказа: #{e.message}"
 end
 ```
 
-### Calculating Tariff
+### Расчет тарифа
 
-To calculate the tariff, use the `calculate_tariff` method with the necessary tariff data:
+Для расчета тарифа используйте метод `calculate_tariff` с необходимыми данными тарифа:
 
 ```ruby
 tariff_data = {
@@ -145,137 +147,147 @@ tariff_data = {
 
 begin
   tariff_response = client.calculate_tariff(tariff_data)
-  puts "Tariff calculated: #{tariff_response}"
+  puts "Тариф рассчитан: #{tariff_response}"
 rescue => e
-  puts "Error calculating tariff: #{e.message}"
+  puts "Ошибка при расчете тарифа: #{e.message}"
 end
 ```
 
-### Getting Location Data
+### Получение данных о местоположении
 
-To retrieve location data such as cities and regions supported by CDEK, use the `get_cities` and `get_regions` methods:
+Для получения данных о местоположении, таких как города и регионы, поддерживаемые CDEK, используйте методы `get_cities` и `get_regions`:
 
 ```ruby
-# Fetching cities
+# Получение списка городов
 begin
   cities = client.get_cities
-  puts "Cities: #{cities}"
+  puts "Города: #{cities}"
 rescue => e
-  puts "Error fetching cities: #{e.message}"
+  puts "Ошибка при получении списка городов: #{e.message}"
 end
 
-# Fetching regions
+# Получение списка регионов
 begin
   regions = client.get_regions
-  puts "Regions: #{regions}"
+  puts "Регионы: #{regions}"
 rescue => e
-  puts "Error fetching regions: #{e.message}"
+  puts "Ошибка при получении списка регионов: #{e.message}"
 end
 ```
 
-### Setting Up Webhooks
+### Настройка вебхуков
 
-Webhooks allow your application to receive real-time notifications about various events related to your shipments. To set up a webhook, register a URL where CDEK will send HTTP POST requests with event data:
+Вебхуки позволяют вашему приложению получать уведомления в реальном времени о различных событиях, связанных с вашими отправлениями. Чтобы настроить вебхук, зарегистрируйте URL, на который CDEK будет отправлять HTTP POST запросы с данными о событиях:
 
 ```ruby
 webhook_url = 'https://yourapp.com/webhooks/cdek'
 begin
   response = client.register_webhook(webhook_url, event_types: ['ORDER_STATUS', 'DELIVERY_STATUS'])
-  puts "Webhook registered: #{response}"
+  puts "Вебхук зарегистрирован: #{response}"
 rescue => e
-  puts "Error registering webhook: #{e.message}"
+  puts "Ошибка при регистрации вебхука: #{e.message}"
 end
 ```
 
-To retrieve and delete registered webhooks:
+Для получения и удаления зарегистрированных вебхуков:
 
 ```ruby
-# Fetching webhooks
+# Получение вебхуков
 begin
   webhooks = client.get_webhooks
-  puts "Webhooks: #{webhooks}"
+  puts "Вебхуки: #{webhooks}"
 rescue => e
-  puts "Error fetching webhooks: #{e.message}"
+  puts "Ошибка при получении вебхуков: #{e.message}"
 end
 
-# Deleting a webhook
-webhook_id = 'webhook_id_to_delete'
+# Удаление вебхука
+webhook_id = 'id_вебхука_для_удаления'
 begin
   response = client.delete_webhook(webhook_id)
-  puts "Webhook deleted: #{response}"
+  puts "Вебхук удален: #{response}"
 rescue => e
-  puts "Error deleting webhook: #{e.message}"
+  puts "Ошибка при удалении вебхука: #{e.message}"
 end
 ```
 
-## Entities
+## Сущности
 
 ### OrderData
 
-Represents the order data.
+Представляет данные заказа.
 
-Attributes:
+Атрибуты:
 
-- `type` (Integer, required): The type of the order.
-- `number` (String, required): The order number.
-- `tariff_code` (Integer, required): The tariff code.
-- `comment` (String): The comment for the order.
-- `recipient` (Recipient, required): The recipient details.
-- `sender` (Sender, required): The sender details.
-- `services` (Array): Additional services.
-- `packages` (Array, required): List of packages.
+- `type` (Integer, обязательный): Тип заказа.
+- `number` (String, обязательный): Номер заказа.
+- `tariff_code` (Integer, обязательный): Код тарифа.
+- `comment` (String): Комментарий к заказу.
+- `recipient` (Recipient, обязательный): Данные получателя.
+- `sender` (Sender, обязательный): Данные отправителя.
+- `from_location` (Hash, обязательный): Данные о местоположении, откуда отправляется заказ.
+- `to_location` (Hash, обязательный): Данные о местоположении, куда отправляется заказ.
+- `services` (Array): Дополнительные услуги.
+- `packages` (Array, обязательный): Список упаковок.
 
 ### Recipient
 
-Represents the recipient details.
+Представляет данные получателя.
 
-Attributes:
+Атрибуты:
 
-- `name` (String, required): The recipient's name.
-- `phones` (Array, required): List of phone numbers.
-- `email` (String, required): The recipient's email address.
+- `name` (String, обязательный): Имя получателя.
+- `phones` (Array, обязательный): Список номеров телефонов.
+- `email` (String, обязательный): Адрес электронной почты получателя.
 
 ### Sender
 
-Represents the sender details.
+Представляет данные отправителя.
 
-Attributes:
+Атрибуты:
 
-- `name` (String, required): The sender's name.
-- `phones` (Array, required): List of phone numbers.
-- `email` (String, required): The sender's email address.
+- `name` (String, обязательный): Имя отправителя.
+- `phones` (Array, обязательный): Список номеров телефонов.
+- `email` (String, обязательный): Адрес электронной почты отправителя.
 
 ### Package
 
-Represents the package details.
+Представляет данные упаковки.
 
-Attributes:
+Атрибуты:
 
-- `number` (String, required): The package number.
-- `weight` (Integer, required): The weight of the package.
-- `length` (Integer, required): The length of the package.
-- `width` (Integer, required): The width of the package.
-- `height` (Integer, required): The height of the package.
-- `comment` (String): The comment for the package.
-- `items` (Array, required): List of items in the package.
+- `number` (String, обязательный): Номер упаковки.
+- `weight` (Integer, обязательный): Вес упаковки.
+- `length` (Integer, обязательный): Длина упаковки.
+- `width` (Integer, обязательный): Ширина упаковки.
+- `height` (Integer, обязательный): Высота упаковки.
+- `comment` (String): Комментарий к упаковке.
+- `items` (Array, обязательный): Список товаров в упаковке.
 
 ### Item
 
-Represents the item details.
+Представляет данные товара.
 
-Attributes:
+Атрибуты:
 
-- `name` (String, required): The name of the item.
-- `ware_key` (String, required): The ware key of the item.
-- `payment` (Integer, required): The payment value of the item.
-- `cost` (Integer, required): The cost of the item.
-- `weight` (Integer, required): The weight of the item.
-- `amount` (Integer, required): The amount of the item.
+- `name` (String, обязательный): Название товара.
+- `ware_key` (String, обязательный): Ключ товара.
+- `payment` (Integer, обязательный): Значение оплаты за товар.
+- `cost` (Integer, обязательный): Стоимость товара.
+- `weight` (Integer, обязательный): Вес товара.
+- `amount` (Integer, обязательный): Количество товара.
+
+## TODO List
+
+- [ ] Реструктурировать кодовую базу для лучшей организации.
+- [ ] Добавить маппинг для внутренних кодов CDEK.
+- [ ] Добавить больше API конечных точек и сущностей данных.
+- [ ] Проверить все атрибуты на обязательные и необязательные поля.
+- [ ] Добавить документацию для всех классов и методов.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/your-username/cdek_api_client](https://github.com/your-username/cdek_api_client).
+Сообщения об ошибках и запросы на внесение изменений приветствуются на GitHub по адресу [https://github.com/your-username/cdek_api_client](https://github.com/your-username/cdek_api_client).
 
 ## License
 
-The gem is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Библиотека доступна как open-source на условиях [MIT License](https://opensource.org/licenses/MIT).
