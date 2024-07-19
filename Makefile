@@ -2,7 +2,7 @@ GEM_NAME = cdek_api_client
 GEM_VERSION = $(shell grep VERSION lib/cdek_api_client/version.rb | awk '{print $$3}' | tr -d "'")
 GEM_FILE = $(GEM_NAME)-$(GEM_VERSION).gem
 
-.PHONY: all build install release push test clean
+.PHONY: all build install release push test clean vcr_check_cassettes docs
 
 all: test build
 
@@ -34,9 +34,7 @@ clean:
 	rm -rf .yardoc
 	rm -rf coverage
 
-.PHONY: vcr:check_cassettes
-
-vcr:check_cassettes:
+vcr_check_cassettes:
 	@echo "Checking VCR cassettes..."
 	bundle exec vcr check_cassettes
 
