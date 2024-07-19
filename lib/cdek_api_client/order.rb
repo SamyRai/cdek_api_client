@@ -5,7 +5,7 @@ require 'cdek_api_client/entities/order_data'
 module CDEKApiClient
   class Order
     BASE_URL = ENV.fetch('CDEK_API_URL', 'https://api.edu.cdek.ru/v2')
-    ORDERS_URL = "#{BASE_URL}/orders"
+    ORDERS_URL = "#{BASE_URL}/orders".freeze
 
     def initialize(client)
       @client = client

@@ -36,7 +36,7 @@ module CDEKApiClient
           length: @length,
           weight: @weight,
           width: @width,
-          items: @items,
+          items: @items
         }.to_json
       end
     end

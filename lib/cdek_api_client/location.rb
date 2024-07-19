@@ -9,14 +9,14 @@ module CDEKApiClient
       @client = client
     end
 
-    def get_cities
+    def cities
       response = @client.auth_connection.get(CITIES_URL) do |req|
         req.headers['Content-Type'] = 'application/json'
       end
       handle_response(response)
     end
 
-    def get_regions
+    def regions
       response = @client.auth_connection.get(REGIONS_URL) do |req|
         req.headers['Content-Type'] = 'application/json'
       end

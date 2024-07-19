@@ -3,7 +3,7 @@
 module CDEKApiClient
   class Tariff
     BASE_URL = ENV.fetch('CDEK_API_URL', 'https://api.edu.cdek.ru/v2')
-    TARIFF_URL = "#{BASE_URL}/calculator/tariff"
+    TARIFF_URL = "#{BASE_URL}/calculator/tariff".freeze
 
     def initialize(client)
       @client = client

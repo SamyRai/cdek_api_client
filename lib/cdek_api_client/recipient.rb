@@ -9,7 +9,7 @@ module CDEKApiClient
         name: { type: :string, presence: true },
         phones: { type: :array, presence: true, items: [{ type: :string, presence: true }] },
         email: { type: :string, presence: true }
-      }
+      }.freeze
 
       def initialize(name:, phones:, email:)
         @name = name
