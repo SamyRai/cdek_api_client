@@ -20,7 +20,7 @@ GEM
       bigdecimal
       rexml
     diff-lcs (1.5.1)
-    faker (3.4.1)
+    faker (3.4.2)
       i18n (>= 1.8.11, < 2)
     faraday (1.10.3)
       faraday-em_http (~> 1.0)
@@ -112,7 +112,7 @@ PLATFORMS
 
 DEPENDENCIES
   cdek_api_client!
-  faker (~> 3.4.1)
+  faker (~> 3.4.2)
   pry (~> 0.14.1)
   rspec (~> 3.13.0)
   rubocop (~> 1.65.0)
