@@ -30,7 +30,8 @@ RSpec.describe CDEKApiClient::Tariff, :vcr do
             CDEKApiClient::Entities::Item.new(
               name: Faker::Commerce.product_name,
               ware_key: Faker::Alphanumeric.alphanumeric(number: 5),
-              payment: CDEKApiClient::Entities::Payment.new(value: Faker::Commerce.price(range: 10..1000).to_i, currency: 'RUB'),
+              payment: CDEKApiClient::Entities::Payment.new(value: Faker::Commerce.price(range: 10..1000).to_i,
+                                                            currency: 'RUB'),
               cost: Faker::Commerce.price(range: 10..1000).to_i,
               weight: Faker::Number.between(from: 100, to: 5000),
               amount: Faker::Number.between(from: 1, to: 10)
@@ -47,11 +48,9 @@ RSpec.describe CDEKApiClient::Tariff, :vcr do
       VCR.use_cassette('calculate_tariff') do
         response = tariff.calculate(tariff_data)
         expect(response).not_to include('error')
-        if response['total_sum']
-          expect(response).to include('total_sum')
-        else
-          raise "Unexpected response format: #{response.inspect}"
-        end
+        raise "Unexpected response format: #{response.inspect}" unless response['total_sum']
+
+        expect(response).to include('total_sum')
       end
     end
   end

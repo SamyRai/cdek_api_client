@@ -1,6 +1,3 @@
-Here's the updated README with the necessary additions:
-
-````markdown
 # CDEK API Client
 
 [![Gem Version](https://badge.fury.io/rb/cdek_api_client.svg)](https://badge.fury.io/rb/cdek_api_client)
@@ -22,6 +19,7 @@ This Readme is also available in:
   - [Calculating Tariff](#calculating-tariff)
   - [Getting Location Data](#getting-location-data)
   - [Setting Up Webhooks](#setting-up-webhooks)
+  - [Fetching and Saving Location Data](#fetching-and-saving-location-data)
 - [Entities](#entities)
   - [OrderData](#orderdata)
   - [Recipient](#recipient)
@@ -40,7 +38,6 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'cdek_api_client'
 ```
-````
 
 And then execute:
 
@@ -226,7 +223,44 @@ rescue => e
 end
 ```
 
-## Entities
+### Fetching and Saving Location Data
+
+The gem has pre-cached values and uses them by default. Users can override this behavior by fetching live data.
+
+You can fetch cities, regions, offices, and postal codes data directly from CDEK API.
+
+```ruby
+
+# Fetching cities
+begin
+  cities = location_client.cities(use_live_data: true)
+rescue => e
+  puts "Error fetching cities: #{e.message}"
+end
+
+# Fetching regions
+begin
+  regions = location_client.regions(use_live_data: true)
+rescue => e
+  puts "Error fetching regions: #{e.message}"
+end
+
+# Fetching  offices
+begin
+  offices = location_client.offices(use_live_data: true)
+rescue => e
+  puts "Error fetching offices: #{e.message}"
+end
+
+# Fetching postal codes for each city
+begin
+  cities = location_client.cities(use_live_data: true)
+rescue => e
+  puts "Error fetching postal codes: #{e.message}"
+end
+```
+
+### Entities
 
 ### OrderData
 
@@ -295,16 +329,24 @@ Attributes:
 ## TODO List
 
 - [x] Restructure the codebase for better organization.
-- [ ] Add mappings for CDEK internal codes.
+- [x] Add mappings for CDEK internal codes.
 - [ ] Add more API endpoints and data entities.
 - [ ] Check all attributes for required and optional fields.
 - [ ] Add documentation for all classes and methods.
 
 ## Changelog
 
-### v1.1.0
+### v0.2.0
 
 - **Added**: Improved error handling and response parsing in `Client`.
 - **Updated**: Code structure for better organization.
 - **Updated**: Specs for `Client` and `API` classes.
-- **Updated**: `README.md` with detailed usage examples
+- **Updated**: `README.md` with detailed usage examples, including fetching and saving location data with optional live data fetching.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub. This gem is used in a couple of projects and fulfills the requirements of those projects. If you have any suggestions or improvements, feel free to open an issue or a pull request.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

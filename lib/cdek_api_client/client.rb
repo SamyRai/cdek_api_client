@@ -12,7 +12,7 @@ require_relative 'api/webhook'
 module CDEKApiClient
   class Client
     BASE_URL = ENV.fetch('CDEK_API_URL', 'https://api.edu.cdek.ru/v2')
-    TOKEN_URL = "#{BASE_URL}/oauth/token"
+    TOKEN_URL = "#{BASE_URL}/oauth/token".freeze
 
     attr_reader :token, :logger, :order, :location, :tariff, :webhook
 
@@ -31,10 +31,10 @@ module CDEKApiClient
     def authenticate
       uri = URI(TOKEN_URL)
       response = Net::HTTP.post_form(uri, {
-        grant_type: 'client_credentials',
-        client_id: @client_id,
-        client_secret: @client_secret
-      })
+                                       grant_type: 'client_credentials',
+                                       client_id: @client_id,
+                                       client_secret: @client_secret
+                                     })
 
       raise "Error getting token: #{response.body}" unless response.is_a?(Net::HTTPSuccess)
 
@@ -65,7 +65,7 @@ module CDEKApiClient
       when Net::HTTPSuccess
         response_body = response.body
         parsed_response = JSON.parse(response_body)
-        
+
         if parsed_response.is_a?(Hash) && parsed_response.key?('error')
           error_message = parsed_response['error']
           @logger.error("API Error: #{error_message}")
@@ -87,7 +87,6 @@ module CDEKApiClient
       @logger.error(error_message)
       { 'error' => error_message }
     end
-
 
     def parse_json(body)
       JSON.parse(body)
