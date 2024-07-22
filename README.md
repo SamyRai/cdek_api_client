@@ -348,6 +348,11 @@ Attributes:
 
 ## Changelog
 
+### v0.2.1
+
+- **Updated**: Changed links to Changelog and the Gem homepage in the gemspec.
+- **Added**: Add new commands to a `Makefile` for tagging a new version and pushing it to GitHub.
+
 ### v0.2.0
 
 - **Added**: Improved error handling and response parsing in `Client`.

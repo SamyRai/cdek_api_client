@@ -21,5 +21,6 @@ Gem::Specification.new do |spec|
   spec.metadata['github_repo'] = 'git@github.com/SamyRai/cdek_api_client.git'
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'http://github.com/SamyRai/cdek_api_client'
-  spec.metadata['changelog_uri'] = 'http://www.glowing-pixels.com/cdek_api_client/CHANGELOG.md'
+  spec.metadata['changelog_uri'] = 'https://github.com/SamyRai/cdek_api_client?tab=readme-ov-file#changelog'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end
