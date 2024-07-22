@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.edu.cdek.ru
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 11:39:25 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Pragma:
+      - no-cache
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-store
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2NTE5NjUsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFwaS12ZXJzaW9uOjEuMSIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJjb250cmFnZW50LXV1aWQ6ZWQ3NWVjZjQtMzBlZC00MTUzLWFmZTktZWI4MGJiNTEyZjIyIiwic29saWQtYWRkcmVzczpmYWxzZSIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiI0ajRuNUhMMDBtQTRWVXlNajktY1AzVzIybDAiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.vQ1V1ewJlYN62-f-jbG71rTGaNR0mLqRdXaXZlQLnnRl7KqNbl4Ei2T6RdvirmcWN5rywbJpfDfKuaR6gIXuji1Uw2ZHUxK-3xy7zDXEf76cQK3A1yrdCBvPOjqSvW5iCBzFgoubg3qx9juCkdEnbUfu0FFoyAXhH-5wemR6WNEabvv3ZotSa184RsIZ2C2Gi5kEJkQxBcOSlFL4FtC-PF9KCAQ070Tpr1ml_U94YPlt49C8wKt4b7osSA1fyhLnjmMVsGAFLie25PB1wiFITyXOxKAjXn_lmYLnBXlX1jxfgRhT7PjIxeDT2GPfpJuIaLHzFgbzIGH7rkZsckmn2Q","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"4j4n5HL00mA4VUyMj9-cP3W22l0"}'
+  recorded_at: Mon, 22 Jul 2024 11:39:25 GMT
+recorded_with: VCR 6.2.0

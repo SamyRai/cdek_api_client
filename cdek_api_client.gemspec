@@ -18,10 +18,6 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 3.0'
 
-  spec.add_dependency 'base64', '~> 0.2.0'
-  spec.add_dependency 'faraday', '~> 1.10.3'
-  spec.add_dependency 'faraday_middleware', '~> 1.2.0'
-
   spec.metadata['github_repo'] = 'git@github.com/SamyRai/cdek_api_client.git'
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'http://github.com/SamyRai/cdek_api_client'

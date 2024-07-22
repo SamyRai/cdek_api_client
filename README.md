@@ -2,12 +2,24 @@
 
 [![Gem Version](https://badge.fury.io/rb/cdek_api_client.svg)](https://badge.fury.io/rb/cdek_api_client)
 
-A Ruby client for interacting with the CDEK API, providing functionalities for order creation, tracking, tariff calculation, location data retrieval, and webhook management. This gem ensures clean, robust, and maintainable code with proper validations.
+### Other Languages
 
-This Readme is also available in:
+- [Русский](README_RUS.md)
+- [Татарча](README_TAT.md)
+- [English](README.md)
 
-- [Russian](README_RUS.md)
-- [Tatar](README_TAT.md)
+**Important:** This gem is in the early stages of development and it is shared as it is. Any support for development or feedback is welcome; please check the [Contributing](#contributing) section for more information.
+
+## Overview
+
+CDEK ([СДЭК](https://www.cdek.ru/)) is a big logistics company in Russia, that provides a wide range of delivery services for businesses and individuals. The [CDEK API](https://www.cdek.ru/ru/integration/api) allows developers to integrate CDEK's services into their applications, enabling functionalities such as order creation, tracking, tariff calculation, location data retrieval, and webhook management.
+
+The `cdek_api_client` gem offers a clean and robust interface to interact with the CDEK API, ensuring maintainable code with proper validations. This gem supports the following features:
+
+- Creating and tracking orders
+- Calculating tariffs
+- Retrieving location data (cities, regions, postal codes, and offices)
+- Managing webhooks
 
 ## Table of Contents
 
@@ -19,12 +31,15 @@ This Readme is also available in:
   - [Calculating Tariff](#calculating-tariff)
   - [Getting Location Data](#getting-location-data)
   - [Setting Up Webhooks](#setting-up-webhooks)
+  - [Fetching and Saving Location Data](#fetching-and-saving-location-data)
 - [Entities](#entities)
   - [OrderData](#orderdata)
   - [Recipient](#recipient)
   - [Sender](#sender)
   - [Package](#package)
   - [Item](#item)
+- [TODO List](#todo-list)
+- [Changelog](#changelog)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -32,15 +47,15 @@ This Readme is also available in:
 
 Add this line to your application's Gemfile:
 
-````ruby
+```ruby
 gem 'cdek_api_client'
-```g
+```
 
 And then execute:
 
 ```sh
 bundle install
-````
+```
 
 Or install it yourself as:
 
@@ -220,7 +235,44 @@ rescue => e
 end
 ```
 
-## Entities
+### Fetching Location Data
+
+The gem has pre-cached values and uses them by default. Users can override this behavior by fetching live data.
+
+You can fetch cities, regions, offices, and postal code data directly from CDEK API.
+
+```ruby
+
+# Fetching cities
+begin
+  cities = location_client.cities(use_live_data: true)
+rescue => e
+  puts "Error fetching cities: #{e.message}"
+end
+
+# Fetching regions
+begin
+  regions = location_client.regions(use_live_data: true)
+rescue => e
+  puts "Error fetching regions: #{e.message}"
+end
+
+# Fetching  offices
+begin
+  offices = location_client.offices(use_live_data: true)
+rescue => e
+  puts "Error fetching offices: #{e.message}"
+end
+
+# Fetching postal codes for each city
+begin
+  cities = location_client.cities(use_live_data: true)
+rescue => e
+  puts "Error fetching postal codes: #{e.message}"
+end
+```
+
+### Entities
 
 ### OrderData
 
@@ -235,7 +287,7 @@ Attributes:
 - `recipient` (Recipient, required): The recipient details.
 - `sender` (Sender, required): The sender details.
 - `from_location` (Hash, required): The location details from where the order is shipped.
-- `to_location` (Hash, required): The location details to where the order is shipped.
+- `to_location` (Hash, required): The location details of where the order is shipped.
 - `services` (Array): Additional services.
 - `packages` (Array, required): List of packages.
 
@@ -251,7 +303,7 @@ Attributes:
 
 ### Sender
 
-Represents the sender details.
+Represents the sender's details.
 
 Attributes:
 
@@ -288,16 +340,25 @@ Attributes:
 
 ## TODO List
 
-- [ ] Restructure the codebase for better organization.
-- [ ] Add mappings for CDEK internal codes.
+- [x] Restructure the codebase for better organization.
+- [x] Add mappings for CDEK internal codes.
 - [ ] Add more API endpoints and data entities.
 - [ ] Check all attributes for required and optional fields.
 - [ ] Add documentation for all classes and methods.
 
+## Changelog
+
+### v0.2.0
+
+- **Added**: Improved error handling and response parsing in `Client`.
+- **Updated**: Code structure for better organization.
+- **Updated**: Specs for `Client` and `API` classes.
+- **Updated**: `README.md` with detailed usage examples, including fetching and saving location data with optional live data fetching.
+
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/your-username/cdek_api_client](https://github.com/your-username/cdek_api_client).
+Bug reports and pull requests are welcome on GitHub. This gem is used in a couple of projects and fulfills the requirements of those projects. If you have any suggestions or improvements, feel free to open an issue or a pull request.
 
 ## License
 
-The gem is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

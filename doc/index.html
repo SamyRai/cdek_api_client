@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.36
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-CDEK+API+Client">CDEK API Client</h1>
+
+<p><a href="https://badge.fury.io/rb/cdek_api_client"><img src="https://badge.fury.io/rb/cdek_api_client.svg"></a></p>
+
+<p>A Ruby client for interacting with the CDEK API, providing functionalities for order creation, tracking, tariff calculation, location data retrieval, and webhook management. This gem ensures clean, robust, and maintainable code with proper validations.</p>
+
+<p>This Readme is also available in:</p>
+<ul><li>
+<p><a href="README_RUS_md.html">Russian</a></p>
+</li><li>
+<p><a href="README_TAT_md.html">Tatar</a></p>
+</li></ul>
+
+<h2 id="label-Table+of+Contents">Table of Contents</h2>
+<ul><li>
+<p><a href="#installation">Installation</a></p>
+</li><li>
+<p><a href="#usage">Usage</a></p>
+</li><li>
+<p><a href="#initialization">Initialization</a></p>
+</li><li>
+<p><a href="#creating-an-order">Creating an Order</a></p>
+</li><li>
+<p><a href="#tracking-an-order">Tracking an Order</a></p>
+</li><li>
+<p><a href="#calculating-tariff">Calculating Tariff</a></p>
+</li><li>
+<p><a href="#getting-location-data">Getting Location Data</a></p>
+</li><li>
+<p><a href="#setting-up-webhooks">Setting Up Webhooks</a></p>
+</li><li>
+<p><a href="#fetching-and-saving-location-data">Fetching and Saving Location Data</a></p>
+</li><li>
+<p><a href="#entities">Entities</a></p>
+</li><li>
+<p><a href="#orderdata">OrderData</a></p>
+</li><li>
+<p><a href="#recipient">Recipient</a></p>
+</li><li>
+<p><a href="#sender">Sender</a></p>
+</li><li>
+<p><a href="#package">Package</a></p>
+</li><li>
+<p><a href="#item">Item</a></p>
+</li><li>
+<p><a href="#todo-list">TODO List</a></p>
+</li><li>
+<p><a href="#changelog">Changelog</a></p>
+</li><li>
+<p><a href="#contributing">Contributing</a></p>
+</li><li>
+<p><a href="#license">License</a></p>
+</li></ul>
+
+<h2 id="label-Installation">Installation</h2>
+
+<p>Add this line to your application’s Gemfile:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cdek_api_client</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_install'>install</span>
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_cdek_api_client'>cdek_api_client</span>
+</code></pre>
+
+<h2 id="label-Usage">Usage</h2>
+
+<h3 id="label-Initialization">Initialization</h3>
+
+<p>To use the CDEK API Client, you need to initialize it with your CDEK API credentials (client ID and client secret):</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cdek_api_client</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='id identifier rubyid_client_id'>client_id</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>your_client_id</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_client_secret'>client_secret</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>your_client_secret</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Client.html" title="CDEKApiClient::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Client.html#initialize-instance_method" title="CDEKApiClient::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_client_id'>client_id</span><span class='comma'>,</span> <span class='id identifier rubyid_client_secret'>client_secret</span><span class='rparen'>)</span>
+</code></pre>
+
+<h3 id="label-Creating+an+Order">Creating an Order</h3>
+
+<p>To create an order, you need to create the necessary entities (<code>OrderData</code>, <code>Recipient</code>, <code>Sender</code>, <code>Package</code>, and <code>Item</code>) and then pass them to the <code>create_order</code> method of the <code>Order</code> class:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_recipient'>recipient</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities.html" title="CDEKApiClient::Entities (module)">Entities</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities/Recipient.html" title="CDEKApiClient::Entities::Recipient (class)">Recipient</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Entities/Recipient.html#initialize-instance_method" title="CDEKApiClient::Entities::Recipient#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+  <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>John Doe</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>phones:</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>number:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>+79000000000</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='label'>email:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>johndoe@example.com</span><span class='tstring_end'>&#39;</span></span>
+<span class='rparen'>)</span>
+
+<span class='id identifier rubyid_sender'>sender</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities.html" title="CDEKApiClient::Entities (module)">Entities</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities/Sender.html" title="CDEKApiClient::Entities::Sender (class)">Sender</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Entities/Sender.html#initialize-instance_method" title="CDEKApiClient::Entities::Sender#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+  <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sender Name</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>phones:</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>number:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>+79000000001</span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='label'>email:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sender@example.com</span><span class='tstring_end'>&#39;</span></span>
+<span class='rparen'>)</span>
+
+<span class='id identifier rubyid_item'>item</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities.html" title="CDEKApiClient::Entities (module)">Entities</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities/Item.html" title="CDEKApiClient::Entities::Item (class)">Item</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Entities/Item.html#initialize-instance_method" title="CDEKApiClient::Entities::Item#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+  <span class='label'>name:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Item 1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>ware_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>00055</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>payment:</span> <span class='int'>1000</span><span class='comma'>,</span>
+  <span class='label'>cost:</span> <span class='int'>1000</span><span class='comma'>,</span>
+  <span class='label'>weight:</span> <span class='int'>500</span><span class='comma'>,</span>
+  <span class='label'>amount:</span> <span class='int'>1</span>
+<span class='rparen'>)</span>
+
+<span class='id identifier rubyid_package'>package</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities.html" title="CDEKApiClient::Entities (module)">Entities</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities/Package.html" title="CDEKApiClient::Entities::Package (class)">Package</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Entities/Package.html#initialize-instance_method" title="CDEKApiClient::Entities::Package#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+  <span class='label'>number:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>weight:</span> <span class='int'>500</span><span class='comma'>,</span>
+  <span class='label'>length:</span> <span class='int'>10</span><span class='comma'>,</span>
+  <span class='label'>width:</span> <span class='int'>10</span><span class='comma'>,</span>
+  <span class='label'>height:</span> <span class='int'>10</span><span class='comma'>,</span>
+  <span class='label'>comment:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Package 1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>items:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_item'>item</span><span class='rbracket'>]</span>
+<span class='rparen'>)</span>
+
+<span class='id identifier rubyid_order_data'>order_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities.html" title="CDEKApiClient::Entities (module)">Entities</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities/OrderData.html" title="CDEKApiClient::Entities::OrderData (class)">OrderData</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Entities/OrderData.html#initialize-instance_method" title="CDEKApiClient::Entities::OrderData#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+  <span class='label'>type:</span> <span class='int'>1</span><span class='comma'>,</span>
+  <span class='label'>number:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TEST123</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>tariff_code:</span> <span class='int'>1</span><span class='comma'>,</span>
+  <span class='label'>comment:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Test order</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>recipient:</span> <span class='id identifier rubyid_recipient'>recipient</span><span class='comma'>,</span>
+  <span class='label'>sender:</span> <span class='id identifier rubyid_sender'>sender</span><span class='comma'>,</span>
+  <span class='label'>from_location:</span> <span class='lbrace'>{</span> <span class='label'>code:</span> <span class='int'>44</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>to_location:</span> <span class='lbrace'>{</span> <span class='label'>code:</span> <span class='int'>270</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>packages:</span> <span class='lbracket'>[</span><span class='id identifier rubyid_package'>package</span><span class='rbracket'>]</span>
+<span class='rparen'>)</span>
+
+<span class='id identifier rubyid_order_client'>order_client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Order.html" title="CDEKApiClient::Order (class)">Order</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Order.html#initialize-instance_method" title="CDEKApiClient::Order#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='rparen'>)</span>
+
+<span class='kw'>begin</span>
+  <span class='id identifier rubyid_order_response'>order_response</span> <span class='op'>=</span> <span class='id identifier rubyid_order_client'>order_client</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_order_data'>order_data</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Order created successfully: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_order_response'>order_response</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error creating order: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Tracking+an+Order">Tracking an Order</h3>
+
+<p>To track an order, use the <code>track</code> method of the <code>Order</code> class with the order UUID:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_order_uuid'>order_uuid</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>order_uuid_from_created_order_response</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='kw'>begin</span>
+  <span class='id identifier rubyid_tracking_info'>tracking_info</span> <span class='op'>=</span> <span class='id identifier rubyid_order_client'>order_client</span><span class='period'>.</span><span class='id identifier rubyid_track'>track</span><span class='lparen'>(</span><span class='id identifier rubyid_order_uuid'>order_uuid</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Tracking info: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tracking_info'>tracking_info</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error tracking order: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Calculating+Tariff">Calculating Tariff</h3>
+
+<p>To calculate the tariff, use the <code>calculate</code> method of the <code>Tariff</code> class with the necessary tariff data:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_tariff_data'>tariff_data</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities.html" title="CDEKApiClient::Entities (module)">Entities</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Entities/TariffData.html" title="CDEKApiClient::Entities::TariffData (class)">TariffData</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Entities/TariffData.html#initialize-instance_method" title="CDEKApiClient::Entities::TariffData#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+  <span class='label'>type:</span> <span class='int'>1</span><span class='comma'>,</span>
+  <span class='label'>currency:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RUB</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='label'>from_location:</span> <span class='lbrace'>{</span> <span class='label'>code:</span> <span class='int'>44</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>to_location:</span> <span class='lbrace'>{</span> <span class='label'>code:</span> <span class='int'>137</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='label'>packages:</span> <span class='lbracket'>[</span><span class='lbrace'>{</span> <span class='label'>weight:</span> <span class='int'>500</span><span class='comma'>,</span> <span class='label'>length:</span> <span class='int'>10</span><span class='comma'>,</span> <span class='label'>width:</span> <span class='int'>10</span><span class='comma'>,</span> <span class='label'>height:</span> <span class='int'>10</span> <span class='rbrace'>}</span><span class='rbracket'>]</span>
+<span class='rparen'>)</span>
+
+<span class='id identifier rubyid_tariff_client'>tariff_client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Tariff.html" title="CDEKApiClient::Tariff (class)">Tariff</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Tariff.html#initialize-instance_method" title="CDEKApiClient::Tariff#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='rparen'>)</span>
+
+<span class='kw'>begin</span>
+  <span class='id identifier rubyid_tariff_response'>tariff_response</span> <span class='op'>=</span> <span class='id identifier rubyid_tariff_client'>tariff_client</span><span class='period'>.</span><span class='id identifier rubyid_calculate'>calculate</span><span class='lparen'>(</span><span class='id identifier rubyid_tariff_data'>tariff_data</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Tariff calculated: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tariff_response'>tariff_response</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error calculating tariff: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Getting+Location+Data">Getting Location Data</h3>
+
+<p>To retrieve location data such as cities and regions supported by CDEK, use the <code>cities</code> and <code>regions</code> methods of the <code>Location</code> class:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_location_client'>location_client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Location.html" title="CDEKApiClient::Location (class)">Location</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Location.html#initialize-instance_method" title="CDEKApiClient::Location#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='rparen'>)</span>
+
+<span class='comment'># Fetching cities
+</span><span class='kw'>begin</span>
+  <span class='id identifier rubyid_cities'>cities</span> <span class='op'>=</span> <span class='id identifier rubyid_location_client'>location_client</span><span class='period'>.</span><span class='id identifier rubyid_cities'>cities</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cities: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cities'>cities</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error fetching cities: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Fetching regions
+</span><span class='kw'>begin</span>
+  <span class='id identifier rubyid_regions'>regions</span> <span class='op'>=</span> <span class='id identifier rubyid_location_client'>location_client</span><span class='period'>.</span><span class='id identifier rubyid_regions'>regions</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Regions: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_regions'>regions</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error fetching regions: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Setting+Up+Webhooks">Setting Up Webhooks</h3>
+
+<p>Webhooks allow your application to receive real-time notifications about various events related to your shipments. To set up a webhook, register a URL where CDEK will send HTTP POST requests with event data:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_webhook_client'>webhook_client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="CDEKApiClient.html" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Webhook.html" title="CDEKApiClient::Webhook (class)">Webhook</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Webhook.html#initialize-instance_method" title="CDEKApiClient::Webhook#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_webhook_url'>webhook_url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://yourapp.com/webhooks/cdek</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>begin</span>
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_webhook_client'>webhook_client</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_webhook_url'>webhook_url</span><span class='comma'>,</span> <span class='label'>event_types:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ORDER_STATUS</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DELIVERY_STATUS</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Webhook registered: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_response'>response</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error registering webhook: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>To retrieve and delete registered webhooks:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Fetching webhooks
+</span><span class='kw'>begin</span>
+  <span class='id identifier rubyid_webhooks'>webhooks</span> <span class='op'>=</span> <span class='id identifier rubyid_webhook_client'>webhook_client</span><span class='period'>.</span><span class='id identifier rubyid_get_webhooks'>get_webhooks</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Webhooks: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_webhooks'>webhooks</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error fetching webhooks: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Deleting a webhook
+</span><span class='id identifier rubyid_webhook_id'>webhook_id</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>webhook_id_to_delete</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>begin</span>
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_webhook_client'>webhook_client</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_webhook_id'>webhook_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Webhook deleted: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_response'>response</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error deleting webhook: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Fetching+Location+Data">Fetching Location Data</h3>
+
+<p>The gem has pre-cached values and uses them by default. Users can override this behavior by fetching live data.</p>
+
+<p>You can fetch cities, regions, offices, and postal codes data directly from CDEK API.</p>
+
+<pre class="code ruby"><code class="ruby">
+<span class='comment'># Fetching cities
+</span><span class='kw'>begin</span>
+  <span class='id identifier rubyid_cities'>cities</span> <span class='op'>=</span> <span class='id identifier rubyid_location_client'>location_client</span><span class='period'>.</span><span class='id identifier rubyid_cities'>cities</span><span class='lparen'>(</span><span class='label'>use_live_data:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error fetching cities: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Fetching regions
+</span><span class='kw'>begin</span>
+  <span class='id identifier rubyid_regions'>regions</span> <span class='op'>=</span> <span class='id identifier rubyid_location_client'>location_client</span><span class='period'>.</span><span class='id identifier rubyid_regions'>regions</span><span class='lparen'>(</span><span class='label'>use_live_data:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error fetching regions: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Fetching  offices
+</span><span class='kw'>begin</span>
+  <span class='id identifier rubyid_offices'>offices</span> <span class='op'>=</span> <span class='id identifier rubyid_location_client'>location_client</span><span class='period'>.</span><span class='id identifier rubyid_offices'>offices</span><span class='lparen'>(</span><span class='label'>use_live_data:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error fetching offices: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+
+<span class='comment'># Fetching postal codes for each city
+</span><span class='kw'>begin</span>
+  <span class='id identifier rubyid_cities'>cities</span> <span class='op'>=</span> <span class='id identifier rubyid_location_client'>location_client</span><span class='period'>.</span><span class='id identifier rubyid_cities'>cities</span><span class='lparen'>(</span><span class='label'>use_live_data:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error fetching postal codes: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h3 id="label-Entities">Entities</h3>
+
+<h3 id="label-OrderData">OrderData</h3>
+
+<p>Represents the order data.</p>
+
+<p>Attributes:</p>
+<ul><li>
+<p><code>type</code> (Integer, required): The type of the order.</p>
+</li><li>
+<p><code>number</code> (String, required): The order number.</p>
+</li><li>
+<p><code>tariff_code</code> (Integer, required): The tariff code.</p>
+</li><li>
+<p><code>comment</code> (String): The comment for the order.</p>
+</li><li>
+<p><code>recipient</code> (Recipient, required): The recipient details.</p>
+</li><li>
+<p><code>sender</code> (Sender, required): The sender details.</p>
+</li><li>
+<p><code>from_location</code> (Hash, required): The location details from where the order is shipped.</p>
+</li><li>
+<p><code>to_location</code> (Hash, required): The location details to where the order is shipped.</p>
+</li><li>
+<p><code>services</code> (Array): Additional services.</p>
+</li><li>
+<p><code>packages</code> (Array, required): List of packages.</p>
+</li></ul>
+
+<h3 id="label-Recipient">Recipient</h3>
+
+<p>Represents the recipient details.</p>
+
+<p>Attributes:</p>
+<ul><li>
+<p><code>name</code> (String, required): The recipient’s name.</p>
+</li><li>
+<p><code>phones</code> (Array, required): List of phone numbers.</p>
+</li><li>
+<p><code>email</code> (String, required): The recipient’s email address.</p>
+</li></ul>
+
+<h3 id="label-Sender">Sender</h3>
+
+<p>Represents the sender details.</p>
+
+<p>Attributes:</p>
+<ul><li>
+<p><code>name</code> (String, required): The sender’s name.</p>
+</li><li>
+<p><code>phones</code> (Array, required): List of phone numbers.</p>
+</li><li>
+<p><code>email</code> (String, required): The sender’s email address.</p>
+</li></ul>
+
+<h3 id="label-Package">Package</h3>
+
+<p>Represents the package details.</p>
+
+<p>Attributes:</p>
+<ul><li>
+<p><code>number</code> (String, required): The package number.</p>
+</li><li>
+<p><code>weight</code> (Integer, required): The weight of the package.</p>
+</li><li>
+<p><code>length</code> (Integer, required): The length of the package.</p>
+</li><li>
+<p><code>width</code> (Integer, required): The width of the package.</p>
+</li><li>
+<p><code>height</code> (Integer, required): The height of the package.</p>
+</li><li>
+<p><code>comment</code> (String): The comment for the package.</p>
+</li><li>
+<p><code>items</code> (Array, required): List of items in the package.</p>
+</li></ul>
+
+<h3 id="label-Item">Item</h3>
+
+<p>Represents the item details.</p>
+
+<p>Attributes:</p>
+<ul><li>
+<p><code>name</code> (String, required): The name of the item.</p>
+</li><li>
+<p><code>ware_key</code> (String, required): The ware key of the item.</p>
+</li><li>
+<p><code>payment</code> (Integer, required): The payment value of the item.</p>
+</li><li>
+<p><code>cost</code> (Integer, required): The cost of the item.</p>
+</li><li>
+<p><code>weight</code> (Integer, required): The weight of the item.</p>
+</li><li>
+<p><code>amount</code> (Integer, required): The amount of the item.</p>
+</li></ul>
+
+<h2 id="label-TODO+List">TODO List</h2>
+<ul><li>
+<p>[x] Restructure the codebase for better organization.</p>
+</li><li>
+<p>[x] Add mappings for CDEK internal codes.</p>
+</li><li>
+<p>[ ] Add more API endpoints and data entities.</p>
+</li><li>
+<p>[ ] Check all attributes for required and optional fields.</p>
+</li><li>
+<p>[ ] Add documentation for all classes and methods.</p>
+</li></ul>
+
+<h2 id="label-Changelog">Changelog</h2>
+
+<h3 id="label-v0.2.0">v0.2.0</h3>
+<ul><li>
+<p><strong>Added</strong>: Improved error handling and response parsing in <code>Client</code>.</p>
+</li><li>
+<p><strong>Updated</strong>: Code structure for better organization.</p>
+</li><li>
+<p><strong>Updated</strong>: Specs for <code>Client</code> and <code>API</code> classes.</p>
+</li><li>
+<p><strong>Updated</strong>: <code>README.md</code> with detailed usage examples, including fetching and saving location data with optional live data fetching.</p>
+</li></ul>
+
+<h2 id="label-Contributing">Contributing</h2>
+
+<p>Bug reports and pull requests are welcome on GitHub. This gem is used in a couple of projects and fulfills the requirements of those projects. If you have any suggestions or improvements, feel free to open an issue or a pull request.</p>
+
+<h2 id="label-License">License</h2>
+
+<p>The gem is available as open source under the terms of the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Mon Jul 22 12:46:17 2024 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.36 (ruby-3.3.3).
+</div>
+
+    </div>
+  </body>
+</html>

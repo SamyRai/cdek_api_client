@@ -19,16 +19,25 @@ VCR.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.before(:suite) do
-    $logger = Logger.new($stdout)
-    $logger.level = Logger::DEBUG
-  end
-
   config.before do
     stub_request(:post, 'https://api.cdek.ru/v2/oauth/token').to_return(
       status: 200,
       body: { access_token: 'test_token' }.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
+  end
+end
+
+module ClientHelper
+  def client
+    CDEKApiClient::Client.new(client_id, client_secret)
+  end
+
+  def client_id
+    'wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP'
+  end
+
+  def client_secret
+    'RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5'
   end
 end

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: CDEKApiClient
+  
+    &mdash; Documentation by YARD 0.9.36
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "CDEKApiClient";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (C)</a> &raquo;
+    
+    
+    <span class="title">CDEKApiClient</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: CDEKApiClient
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/cdek_api_client.rb<span class="defines">,<br />
+  lib/cdek_api_client/client.rb,<br /> lib/cdek_api_client/version.rb,<br /> lib/cdek_api_client/api/order.rb,<br /> lib/cdek_api_client/api/tariff.rb,<br /> lib/cdek_api_client/api/webhook.rb,<br /> lib/cdek_api_client/api/location.rb,<br /> lib/cdek_api_client/entities/item.rb,<br /> lib/cdek_api_client/api/track_order.rb,<br /> lib/cdek_api_client/entities/sender.rb,<br /> lib/cdek_api_client/entities/package.rb,<br /> lib/cdek_api_client/entities/payment.rb,<br /> lib/cdek_api_client/entities/service.rb,<br /> lib/cdek_api_client/entities/webhook.rb,<br /> lib/cdek_api_client/entities/location.rb,<br /> lib/cdek_api_client/entities/recipient.rb,<br /> lib/cdek_api_client/entities/order_data.rb,<br /> lib/cdek_api_client/entities/tariff_data.rb,<br /> lib/cdek_api_client/entities/validatable.rb,<br /> lib/cdek_api_client/entities/currency_mapper.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="CDEKApiClient/Entities.html" title="CDEKApiClient::Entities (module)">Entities</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="CDEKApiClient/Client.html" title="CDEKApiClient::Client (class)">Client</a></span>, <span class='object_link'><a href="CDEKApiClient/Error.html" title="CDEKApiClient::Error (class)">Error</a></span>, <span class='object_link'><a href="CDEKApiClient/Location.html" title="CDEKApiClient::Location (class)">Location</a></span>, <span class='object_link'><a href="CDEKApiClient/Order.html" title="CDEKApiClient::Order (class)">Order</a></span>, <span class='object_link'><a href="CDEKApiClient/Tariff.html" title="CDEKApiClient::Tariff (class)">Tariff</a></span>, <span class='object_link'><a href="CDEKApiClient/TrackOrder.html" title="CDEKApiClient::TrackOrder (class)">TrackOrder</a></span>, <span class='object_link'><a href="CDEKApiClient/Webhook.html" title="CDEKApiClient::Webhook (class)">Webhook</a></span>
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.2.0</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Class Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#client_id-class_method" title="client_id (class method)">.<strong>client_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute client_id.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#client_secret-class_method" title="client_secret (class method)">.<strong>client_secret</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute client_secret.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#client-class_method" title="client (class method)">.<strong>client</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configure-class_method" title="configure (class method)">.<strong>configure</strong> {|_self| ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="class_attr_details" class="attr_details">
+    <h2>Class Attribute Details</h2>
+    
+      
+      <span id="client_id=-class_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="client_id-class_method">
+  
+    .<strong>client_id</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute client_id.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/cdek_api_client.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_client_id'>client_id</span>
+  <span class='ivar'>@client_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="client_secret=-class_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="client_secret-class_method">
+  
+    .<strong>client_secret</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute client_secret.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/cdek_api_client.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_client_secret'>client_secret</span>
+  <span class='ivar'>@client_secret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="client-class_method">
+  
+    .<strong>client</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/cdek_api_client.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span>
+  <span class='ivar'>@client</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="" title="CDEKApiClient (module)">CDEKApiClient</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CDEKApiClient/Client.html" title="CDEKApiClient::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="CDEKApiClient/Client.html#initialize-instance_method" title="CDEKApiClient::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_client_id'>client_id</span><span class='comma'>,</span> <span class='id identifier rubyid_client_secret'>client_secret</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="configure-class_method">
+  
+    .<strong>configure</strong> {|_self| ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>_self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>_self</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="CDEKApiClient (module)">CDEKApiClient</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the object that the method was called on</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/cdek_api_client.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span>
+  <span class='kw'>yield</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Mon Jul 22 12:46:17 2024 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.36 (ruby-3.3.3).
+</div>
+
+    </div>
+  </body>
+</html>

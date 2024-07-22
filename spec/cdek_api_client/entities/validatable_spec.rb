@@ -149,8 +149,19 @@ RSpec.describe CDEKApiClient::Entities::Validatable do
               @packages = packages
               validate!
             end
-          end.new(packages: [CDEKApiClient::Entities::Package.new(number: 123, weight: 500, length: 50, width: 50,
-                                                                  height: 50, items: [], comment: Faker::Lorem.sentence)])
+          end.new(
+            packages: [
+              CDEKApiClient::Entities::Package.new(
+                number: 123,
+                weight: 500,
+                length: 50,
+                width: 50,
+                height: 50,
+                items: [],
+                comment: Faker::Lorem.sentence
+              )
+            ]
+          )
         end.to raise_error('number must be a String')
       end
     end

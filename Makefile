@@ -41,3 +41,7 @@ vcr_check_cassettes:
 docs:
 	@echo "Generating documentation..."
 	bundle exec yard doc
+
+docs-server:
+	@echo "Starting documentation server..."
+	bundle exec yard server --reload

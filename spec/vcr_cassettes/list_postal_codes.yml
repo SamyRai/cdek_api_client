@@ -1,0 +1,146 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.edu.cdek.ru
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 01:04:19 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Cache-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      Pragma:
+      - no-cache
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2MTM4NTksImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJkSWdFbFZPSkJDT09rbG9RVWI5emlMcmpRemsiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.YKrwR2LKvCwTus65JPpfvmyU27yyZyAQ2oea4SJ6512nHKMdHZ9L6Ecu2Mt1TRgq46nNSLdE-QwrcoBRkKjBxHHTPmSwGn_5TKcUIbev97eME9aY7Ur1S7fF2UMkwO2iELqk5gNBVrFGXwWWeFLM_eAlD0lmeSGXm0ptczu3sLS_4CYCZFxJDpuJK5AaqeoBHz_crQD2iKnY9BFbbqNH4_NbZXnTgkZ07xFkj2aNVfxTGCc4YPmizYQev-p_PQ3XOQGtsipje2qhBlilxCunc0vUX2C5RtS0Z4ISK8GrMnSnMwetmMH-s-52LUaBnvBQcalodUrxsYc5jnDVi84afw","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"dIgElVOJBCOOkloQUb9ziLrjQzk"}'
+  recorded_at: Mon, 22 Jul 2024 01:04:19 GMT
+- request:
+    method: get
+    uri: https://api.edu.cdek.ru/v2//location/postalcodes
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2MTM4NTksImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJkSWdFbFZPSkJDT09rbG9RVWI5emlMcmpRemsiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.YKrwR2LKvCwTus65JPpfvmyU27yyZyAQ2oea4SJ6512nHKMdHZ9L6Ecu2Mt1TRgq46nNSLdE-QwrcoBRkKjBxHHTPmSwGn_5TKcUIbev97eME9aY7Ur1S7fF2UMkwO2iELqk5gNBVrFGXwWWeFLM_eAlD0lmeSGXm0ptczu3sLS_4CYCZFxJDpuJK5AaqeoBHz_crQD2iKnY9BFbbqNH4_NbZXnTgkZ07xFkj2aNVfxTGCc4YPmizYQev-p_PQ3XOQGtsipje2qhBlilxCunc0vUX2C5RtS0Z4ISK8GrMnSnMwetmMH-s-52LUaBnvBQcalodUrxsYc5jnDVi84afw
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 01:04:43 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Cache-Control:
+      - must-revalidate,no-cache,no-store
+    body:
+      encoding: UTF-8
+      string: '{"timestamp":"2024-07-22T01:04:43.224+00:00","status":500,"error":"Internal
+        Server Error","path":"/v2//location/postalcodes"}'
+  recorded_at: Mon, 22 Jul 2024 01:04:43 GMT
+- request:
+    method: get
+    uri: https://api.edu.cdek.ru/v2/location/postalcodes
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2MTM4NTksImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJkSWdFbFZPSkJDT09rbG9RVWI5emlMcmpRemsiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.YKrwR2LKvCwTus65JPpfvmyU27yyZyAQ2oea4SJ6512nHKMdHZ9L6Ecu2Mt1TRgq46nNSLdE-QwrcoBRkKjBxHHTPmSwGn_5TKcUIbev97eME9aY7Ur1S7fF2UMkwO2iELqk5gNBVrFGXwWWeFLM_eAlD0lmeSGXm0ptczu3sLS_4CYCZFxJDpuJK5AaqeoBHz_crQD2iKnY9BFbbqNH4_NbZXnTgkZ07xFkj2aNVfxTGCc4YPmizYQev-p_PQ3XOQGtsipje2qhBlilxCunc0vUX2C5RtS0Z4ISK8GrMnSnMwetmMH-s-52LUaBnvBQcalodUrxsYc5jnDVi84afw
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 01:05:47 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"errors":[{"code":"v2_field_is_empty","message":"[code] is empty"}]}'
+  recorded_at: Mon, 22 Jul 2024 01:05:47 GMT
+recorded_with: VCR 6.2.0
