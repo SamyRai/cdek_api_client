@@ -10,12 +10,29 @@ require_relative 'api/tariff'
 require_relative 'api/webhook'
 
 module CDEKApiClient
+  # Client class for interacting with the CDEK API.
   class Client
     BASE_URL = ENV.fetch('CDEK_API_URL', 'https://api.edu.cdek.ru/v2')
     TOKEN_URL = "#{BASE_URL}/oauth/token".freeze
 
-    attr_reader :token, :logger, :order, :location, :tariff, :webhook
+    # @return [String] the access token for API authentication.
+    attr_reader :token
+    # @return [Logger] the logger instance.
+    attr_reader :logger
+    # @return [CDEKApiClient::Order] the order API interface.
+    attr_reader :order
+    # @return [CDEKApiClient::Location] the location API interface.
+    attr_reader :location
+    # @return [CDEKApiClient::Tariff] the tariff API interface.
+    attr_reader :tariff
+    # @return [CDEKApiClient::Webhook] the webhook API interface.
+    attr_reader :webhook
 
+    # Initializes the client with API credentials and logger.
+    #
+    # @param client_id [String] the client ID.
+    # @param client_secret [String] the client secret.
+    # @param logger [Logger] the logger instance.
     def initialize(client_id, client_secret, logger: Logger.new($stdout))
       @client_id = client_id
       @client_secret = client_secret
@@ -28,6 +45,10 @@ module CDEKApiClient
       @webhook = CDEKApiClient::Webhook.new(self)
     end
 
+    # Authenticates with the API and retrieves an access token.
+    #
+    # @return [String] the access token.
+    # @raise [StandardError] if authentication fails.
     def authenticate
       uri = URI(TOKEN_URL)
       response = Net::HTTP.post_form(uri, {
@@ -41,6 +62,12 @@ module CDEKApiClient
       JSON.parse(response.body)['access_token']
     end
 
+    # Makes an HTTP request to the API.
+    #
+    # @param method [String] the HTTP method (e.g., 'get', 'post').
+    # @param path [String] the API endpoint path.
+    # @param body [Hash, nil] the request body.
+    # @return [Hash, Array] the parsed response.
     def request(method, path, body: nil)
       uri = URI("#{BASE_URL}/#{path}")
       http = Net::HTTP.new(uri.host, uri.port)
@@ -60,6 +87,10 @@ module CDEKApiClient
 
     private
 
+    # Handles the API response, parsing JSON and handling errors.
+    #
+    # @param response [Net::HTTPResponse] the HTTP response.
+    # @return [Hash, Array] the parsed response.
     def handle_response(response)
       case response
       when Net::HTTPSuccess
@@ -88,6 +119,10 @@ module CDEKApiClient
       { 'error' => error_message }
     end
 
+    # Parses a JSON string, handling any parsing errors.
+    #
+    # @param body [String] the JSON string to parse.
+    # @return [Hash] the parsed JSON.
     def parse_json(body)
       JSON.parse(body)
     rescue JSON::ParserError => e

@@ -2,22 +2,36 @@
 
 module CDEKApiClient
   module Entities
+    # This module provides validation capabilities for entities.
+    # It allows for presence and type validations on attributes.
     module Validatable
       def self.included(base)
         base.extend ClassMethods
       end
 
       module ClassMethods
+        # Defines validations for attributes.
+        #
+        # @param attribute [Symbol] the name of the attribute to validate.
+        # @param options [Hash] the validation options.
+        # @option options [Symbol] :type the expected type of the attribute.
+        # @option options [Boolean] :presence whether the attribute is required.
         def validates(attribute, options)
           @validations ||= {}
           @validations[attribute] = options
         end
 
+        # Returns the defined validations.
+        #
+        # @return [Hash] the defined validations.
         def validations
           @validations
         end
       end
 
+      # Validates the entity's attributes based on the defined validations.
+      #
+      # @raise [RuntimeError] if any validation fails.
       def validate!
         self.class.validations.each do |attribute, rule|
           value = send(attribute)
@@ -28,10 +42,22 @@ module CDEKApiClient
 
       private
 
+      # Validates the presence of an attribute.
+      #
+      # @param attribute [Symbol] the name of the attribute.
+      # @param value [Object] the value of the attribute.
+      # @param rule [Hash] the validation rule.
+      # @raise [RuntimeError] if the validation fails.
       def validate_presence(attribute, value, rule)
         raise "#{attribute} is required" if rule[:presence] && value.nil?
       end
 
+      # Validates the type of an attribute.
+      #
+      # @param attribute [Symbol] the name of the attribute.
+      # @param value [Object] the value of the attribute.
+      # @param rule [Hash] the validation rule.
+      # @raise [RuntimeError] if the validation fails.
       def validate_type(attribute, value, rule)
         case rule[:type]
         when :string
@@ -51,10 +77,22 @@ module CDEKApiClient
         end
       end
 
+      # Validates that a value is positive.
+      #
+      # @param attribute [Symbol] the name of the attribute.
+      # @param value [Integer] the value of the attribute.
+      # @param rule [Hash] the validation rule.
+      # @raise [RuntimeError] if the validation fails.
       def validate_positive(attribute, value, rule)
         raise "#{attribute} must be a positive number" if rule[:positive] && value <= 0
       end
 
+      # Validates the items of an array.
+      #
+      # @param attribute [Symbol] the name of the attribute.
+      # @param array [Array] the value of the attribute.
+      # @param rule [Hash] the validation rule.
+      # @raise [RuntimeError] if the validation fails.
       def validate_array_items(attribute, array, rule)
         array.each do |item|
           if item.is_a?(Hash)
@@ -70,6 +108,12 @@ module CDEKApiClient
         end
       end
 
+      # Validates an object.
+      #
+      # @param _attribute [Symbol] the name of the attribute.
+      # @param object [Object] the value of the attribute.
+      # @param _rule [Hash] the validation rule.
+      # @raise [RuntimeError] if the validation fails.
       def validate_object(_attribute, object, _rule)
         object.class.validations.each do |attr, validation_rule|
           value = object.send(attr)
@@ -78,6 +122,12 @@ module CDEKApiClient
         end
       end
 
+      # Validates a hash.
+      #
+      # @param _attribute [Symbol] the name of the attribute.
+      # @param hash [Hash] the value of the attribute.
+      # @param rule [Hash] the validation rule.
+      # @raise [RuntimeError] if the validation fails.
       def validate_hash(_attribute, hash, rule)
         rule[:schema].each do |attr, validation_rule|
           value = hash[attr]

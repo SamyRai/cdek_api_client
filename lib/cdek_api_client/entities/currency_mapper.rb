@@ -2,6 +2,7 @@
 
 module CDEKApiClient
   module Entities
+    # CurrencyMapper is a utility module that maps currency codes to their respective integer representations.
     module CurrencyMapper
       CURRENCY_CODES = {
         'RUB' => 1,
@@ -26,6 +27,11 @@ module CDEKApiClient
         'JPY' => 55
       }.freeze
 
+      # Converts a currency code to its corresponding integer representation.
+      #
+      # @param currency [String] the currency code to convert.
+      # @return [Integer] the integer representation of the currency code.
+      # @raise [ArgumentError] if the currency code is invalid.
       def self.to_code(currency)
         CURRENCY_CODES[currency] || (raise ArgumentError, "Invalid currency code: #{currency}")
       end

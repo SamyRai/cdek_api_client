@@ -7,6 +7,8 @@ require_relative 'sender'
 
 module CDEKApiClient
   module Entities
+    # Represents the data required to create an order in the CDEK API.
+    # Each order includes attributes such as type, number, tariff code, locations, recipient, sender, and packages.
     class OrderData
       include Validatable
 
@@ -23,6 +25,21 @@ module CDEKApiClient
       validates :packages, type: :array, presence: true, items: [Package]
       validates :comment, type: :string
 
+      # Initializes a new OrderData object.
+      #
+      # @param type [Integer] the type of the order.
+      # @param number [String] the order number.
+      # @param tariff_code [Integer] the tariff code.
+      # @param from_location [Location] the location details from where the order is shipped.
+      # @param to_location [Location] the location details to where the order is shipped.
+      # @param recipient [Recipient] the recipient details.
+      # @param sender [Sender] the sender details.
+      # @param packages [Array<Package>] the list of packages.
+      # @param comment [String, nil] the comment for the order.
+      # @param shipment_point [String, nil] the shipment point.
+      # @param delivery_point [String, nil] the delivery point.
+      # @param services [Array, nil] additional services.
+      # @raise [ArgumentError] if any attribute validation fails.
       def initialize(type:, number:, tariff_code:, from_location:, to_location:, recipient:, sender:, packages:,
                      comment: nil, shipment_point: nil, delivery_point: nil, services: [])
         @type = type
@@ -40,6 +57,9 @@ module CDEKApiClient
         validate!
       end
 
+      # Converts the OrderData object to a JSON representation.
+      #
+      # @return [String] the JSON representation of the OrderData.
       def to_json(*_args)
         {
           type: @type,

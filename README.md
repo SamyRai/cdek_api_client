@@ -223,7 +223,7 @@ rescue => e
 end
 ```
 
-### Fetching and Saving Location Data
+### Fetching Location Data
 
 The gem has pre-cached values and uses them by default. Users can override this behavior by fetching live data.
 
