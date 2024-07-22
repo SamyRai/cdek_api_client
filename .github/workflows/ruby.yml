@@ -35,6 +35,9 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
 
+      - name: Lint with RuboCop
+        run: bundle exec rubocop
+
   publish:
     if: github.event_name == 'release' && github.event.action == 'created'
     needs: build

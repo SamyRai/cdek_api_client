@@ -39,10 +39,10 @@ module CDEKApiClient
       @logger = logger
       @token = authenticate
 
-      @order = CDEKApiClient::Order.new(self)
-      @location = CDEKApiClient::Location.new(self)
-      @tariff = CDEKApiClient::Tariff.new(self)
-      @webhook = CDEKApiClient::Webhook.new(self)
+      @order = CDEKApiClient::API::Order.new(self)
+      @location = CDEKApiClient::API::Location.new(self)
+      @tariff = CDEKApiClient::API::Tariff.new(self)
+      @webhook = CDEKApiClient::API::Webhook.new(self)
     end
 
     # Authenticates with the API and retrieves an access token.
@@ -72,12 +72,7 @@ module CDEKApiClient
       uri = URI("#{BASE_URL}/#{path}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
-      request_class = Net::HTTP.const_get(method.capitalize)
-      request = request_class.new(uri.request_uri)
-      request['Authorization'] = "Bearer #{@token}"
-      request['Content-Type'] = 'application/json'
-      request.body = body.to_json if body
-
+      request = build_request(method, uri, body)
       response = http.request(request)
       handle_response(response)
     rescue StandardError => e
@@ -87,6 +82,21 @@ module CDEKApiClient
 
     private
 
+    # Builds an HTTP request with the specified method, URI, and body.
+    #
+    # @param method [String] the HTTP method (e.g., 'get', 'post').
+    # @param uri [URI::HTTP] the URI for the request.
+    # @param body [Hash, nil] the request body.
+    # @return [Net::HTTPRequest] the constructed HTTP request.
+    def build_request(method, uri, body)
+      request_class = Net::HTTP.const_get(method.capitalize)
+      request = request_class.new(uri.request_uri)
+      request['Authorization'] = "Bearer #{@token}"
+      request['Content-Type'] = 'application/json'
+      request.body = body.to_json if body
+      request
+    end
+
     # Handles the API response, parsing JSON and handling errors.
     #
     # @param response [Net::HTTPResponse] the HTTP response.
@@ -94,29 +104,20 @@ module CDEKApiClient
     def handle_response(response)
       case response
       when Net::HTTPSuccess
-        response_body = response.body
-        parsed_response = JSON.parse(response_body)
+        parsed_response = parse_json(response.body)
+        return parsed_response unless parsed_response.is_a?(Hash) && parsed_response.key?('error')
 
-        if parsed_response.is_a?(Hash) && parsed_response.key?('error')
-          error_message = parsed_response['error']
-          @logger.error("API Error: #{error_message}")
-          { 'error' => error_message }
-        else
-          parsed_response
-        end
-      when Array
-        response
-      when Hash
+        log_error("API Error: #{parsed_response['error']}")
+        { 'error' => parsed_response['error'] }
+      when Array, Hash
         response
       else
-        error_message = "Unexpected response type: #{response.class}"
-        @logger.error(error_message)
-        { 'error' => error_message }
+        log_error("Unexpected response type: #{response.class}")
+        { 'error' => "Unexpected response type: #{response.class}" }
       end
     rescue JSON::ParserError => e
-      error_message = "Failed to parse response: #{e.message}"
-      @logger.error(error_message)
-      { 'error' => error_message }
+      log_error("Failed to parse response: #{e.message}")
+      { 'error' => "Failed to parse response: #{e.message}" }
     end
 
     # Parses a JSON string, handling any parsing errors.
@@ -126,9 +127,15 @@ module CDEKApiClient
     def parse_json(body)
       JSON.parse(body)
     rescue JSON::ParserError => e
-      error_message = "Failed to parse JSON body: #{e.message}"
-      @logger.error(error_message)
-      { 'error' => error_message }
+      log_error("Failed to parse JSON body: #{e.message}")
+      { 'error' => "Failed to parse JSON body: #{e.message}" }
+    end
+
+    # Logs an error message.
+    #
+    # @param message [String] the error message to log.
+    def log_error(message)
+      @logger.error(message)
     end
   end
 end

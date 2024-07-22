@@ -1,14 +1,12 @@
-# spec/cdek_api_client/models/order_spec.rb
 # frozen_string_literal: true
 
 require 'spec_helper'
 require 'cdek_api_client'
 require 'faker'
 
-RSpec.describe CDEKApiClient::Order, :vcr do
-  let(:client_id) { 'wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP' }
-  let(:client_secret) { 'RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5' }
-  let(:client) { CDEKApiClient::Client.new(client_id, client_secret) }
+RSpec.describe CDEKApiClient::API::Order, :vcr do
+  include ClientHelper
+
   let(:order) { client.order }
 
   let(:recipient) do
@@ -72,16 +70,24 @@ RSpec.describe CDEKApiClient::Order, :vcr do
   end
 
   describe '#create' do
+    subject(:response) { order.create(order_data) }
+
     it 'creates an order successfully' do
       VCR.use_cassette('create_order') do
-        response = order.create(order_data)
         expect(response).not_to include('error')
+      end
+    end
+
+    it 'has an accepted state' do
+      VCR.use_cassette('create_order') do
         expect(response['requests'].first['state']).to eq('ACCEPTED')
       end
     end
   end
 
   describe '#track' do
+    subject(:response) { order.track(order_uuid) }
+
     let(:order_uuid) do
       response = VCR.use_cassette('create_order') do
         order.create(order_data)
@@ -91,8 +97,12 @@ RSpec.describe CDEKApiClient::Order, :vcr do
 
     it 'tracks an order successfully' do
       VCR.use_cassette('track_order') do
-        response = order.track(order_uuid)
         expect(response).not_to include('error')
+      end
+    end
+
+    it 'includes the correct order uuid' do
+      VCR.use_cassette('track_order') do
         expect(response['entity']).to include('uuid' => order_uuid)
       end
     end

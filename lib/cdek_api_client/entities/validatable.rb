@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Validatable module provides validation capabilities for entities.
 module CDEKApiClient
   module Entities
     # This module provides validation capabilities for entities.
@@ -9,6 +10,7 @@ module CDEKApiClient
         base.extend ClassMethods
       end
 
+      # Class methods for the Validatable module.
       module ClassMethods
         # Defines validations for attributes.
         #
@@ -61,20 +63,49 @@ module CDEKApiClient
       def validate_type(attribute, value, rule)
         case rule[:type]
         when :string
-          raise "#{attribute} must be a String" unless value.is_a?(String)
+          validate_string(attribute, value)
         when :integer
-          raise "#{attribute} must be an Integer" unless value.is_a?(Integer)
-
-          validate_positive(attribute, value, rule)
+          validate_integer(attribute, value, rule)
         when :array
-          raise "#{attribute} must be an Array" unless value.is_a?(Array)
-
-          validate_array_items(attribute, value, rule)
+          validate_array(attribute, value, rule)
         when :object
           validate_object(attribute, value, rule)
         when :hash
           validate_hash(attribute, value, rule)
         end
+      end
+
+      # Validates that a value is a string.
+      #
+      # @param attribute [Symbol] the name of the attribute.
+      # @param value [Object] the value of the attribute.
+      # @raise [RuntimeError] if the validation fails.
+      def validate_string(attribute, value)
+        raise "#{attribute} must be a String" unless value.is_a?(String)
+      end
+
+      # Validates that a value is an integer and optionally that it is positive.
+      #
+      # @param attribute [Symbol] the name of the attribute.
+      # @param value [Integer] the value of the attribute.
+      # @param rule [Hash] the validation rule.
+      # @raise [RuntimeError] if the validation fails.
+      def validate_integer(attribute, value, rule)
+        raise "#{attribute} must be an Integer" unless value.is_a?(Integer)
+
+        validate_positive(attribute, value, rule)
+      end
+
+      # Validates that a value is an array and its items.
+      #
+      # @param attribute [Symbol] the name of the attribute.
+      # @param array [Array] the value of the attribute.
+      # @param rule [Hash] the validation rule.
+      # @raise [RuntimeError] if the validation fails.
+      def validate_array(attribute, array, rule)
+        raise "#{attribute} must be an Array" unless array.is_a?(Array)
+
+        validate_array_items(attribute, array, rule)
       end
 
       # Validates that a value is positive.

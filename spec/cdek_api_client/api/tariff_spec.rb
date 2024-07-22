@@ -4,10 +4,9 @@ require 'spec_helper'
 require 'cdek_api_client'
 require 'faker'
 
-RSpec.describe CDEKApiClient::Tariff, :vcr do
-  let(:client_id) { 'wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP' }
-  let(:client_secret) { 'RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5' }
-  let(:client) { CDEKApiClient::Client.new(client_id, client_secret) }
+RSpec.describe CDEKApiClient::API::Tariff, :vcr do
+  include ClientHelper
+
   let(:tariff) { client.tariff }
 
   let(:tariff_data) do
@@ -44,10 +43,16 @@ RSpec.describe CDEKApiClient::Tariff, :vcr do
   end
 
   describe '#calculate' do
-    it 'calculates the tariff successfully' do
+    subject(:response) { tariff.calculate(tariff_data) }
+
+    it 'does not include error' do
       VCR.use_cassette('calculate_tariff') do
-        response = tariff.calculate(tariff_data)
         expect(response).not_to include('error')
+      end
+    end
+
+    it 'calculates the total_sum' do
+      VCR.use_cassette('calculate_tariff') do
         raise "Unexpected response format: #{response.inspect}" unless response['total_sum']
 
         expect(response).to include('total_sum')

@@ -6,7 +6,8 @@ require_relative 'currency_mapper'
 module CDEKApiClient
   module Entities
     # Represents the data required to calculate a tariff in the CDEK API.
-    # Each tariff data includes attributes such as type, currency, from_location, to_location, packages, and tariff_code.
+    # Each tariff data includes attributes such as type, currency,
+    # from_location, to_location, packages, and tariff_code.
     class TariffData
       include Validatable
 
