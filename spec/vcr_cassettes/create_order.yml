@@ -4,17 +4,19 @@ http_interactions:
     method: post
     uri: https://api.edu.cdek.ru/v2/oauth/token
     body:
-      encoding: UTF-8
-      string: client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5&grant_type=client_credentials
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5
     headers:
-      User-Agent:
-      - Faraday v1.10.3
-      Content-Type:
-      - application/x-www-form-urlencoded
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.edu.cdek.ru
+      Content-Type:
+      - application/x-www-form-urlencoded
   response:
     status:
       code: 200
@@ -23,7 +25,7 @@ http_interactions:
       Server:
       - QRATOR
       Date:
-      - Fri, 19 Jul 2024 19:13:16 GMT
+      - Mon, 22 Jul 2024 00:46:14 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -32,6 +34,11 @@ http_interactions:
       - keep-alive
       Keep-Alive:
       - timeout=15
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Pragma:
+      - no-cache
       X-Xss-Protection:
       - 1; mode=block
       X-Frame-Options:
@@ -40,40 +47,36 @@ http_interactions:
       - nosniff
       Cache-Control:
       - no-store
-      Vary:
-      - Accept-Encoding
-      - Accept-Encoding
-      Pragma:
-      - no-cache
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTYsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJjb250cmFnZW50LXV1aWQ6ZWQ3NWVjZjQtMzBlZC00MTUzLWFmZTktZWI4MGJiNTEyZjIyIiwic29saWQtYWRkcmVzczpmYWxzZSIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiIyQm5XN0k1SjdKdUIwNm1tR2RJTnZYeW1oVlEiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.ZW9TJPzELm2wlyEc0FA52GT-URlXy6C5kHpymZCgHYawca0L-zvCya6B-61TGKDSv-_B7Q-7nrQh9ZPy6bXbNG__l5HdxwfaIxlBEa2hOHwQvRed6fezS0iXMWyaHNKvRD9N9DHxJY-h7wZVPUOOnv37oebKDe-U4Ne_XYNxxvC_-afE06axYd0HmH1hg4b-E5W57ndTNVZG6bBo2qnycV4dz0YY3qjnCmYO2-LJip8zvNo3Fe7NsoAxMPddp74HMwcoL8KuRzH_3JhsVCHjtYZxEsFgkFR_csmBpbVXuAYDVWx0eHnavMByUXvWj2Spr6os6PJ_PJsjuJ8JiB8pjg","token_type":"bearer","expires_in":3599,"scope":"order:all
-        payment:all","jti":"2BnW7I5J7JuB06mmGdINvXymhVQ"}'
-  recorded_at: Fri, 19 Jul 2024 19:13:16 GMT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2MTI3NzQsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJuYkFPVVpNYlFTOE9wOXZnSHlYUHVaQll4ajQiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.frIDCaq_Tcqq2KVtZbGmKUtPq3qYpgKQ6vGEU0VjvaOnQdUsXHlxcG9q83-ZCcq_b6y4IRKZ3SVzIDhoW5qSWB5yxaqPGpTc96pB4Do35D7OJMAQVVQoKzvHlYeDUJTRg_n40G1eYd6joEx1rSgKP4eZ0Ol2onA5xFQlwgpzr319gONC8mCHbghymI92oa7SZNsxaZKVHk2jprI_1M1jWnB0XYJc8QkOjG0I6GxJ1_SNavZp0zDJ7rlj0PDhCnAELzuBGcl6jB2xW8wiz5Onwd9EHqsJUmtIVNTYyjGfxmBZG0H8ekUg2Bg05sbZtxNjdfk8vdccbV5W4GR8lsGqWg","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"nbAOUZMbQS8Op9vgHyXPuZBYxj4"}'
+  recorded_at: Mon, 22 Jul 2024 00:46:14 GMT
 - request:
     method: post
     uri: https://api.edu.cdek.ru/v2/orders
     body:
       encoding: UTF-8
-      string: '{"type":1,"number":"02jc1bv1ln","tariff_code":4,"comment":"Est repellendus
-        in sit.","shipment_point":null,"delivery_point":null,"from_location":{"code":16584,"city":"Киров","address":"851352
-        Россия, Брянск, площадь Комсомольская, 644 кв. 339"},"to_location":{"code":16584,"city":"Тула","address":"627761
-        Россия, Курск, Чехова улица, 156"},"recipient":{"name":"Прохорова Зоя Семёновна","phones":[{"number":"+71305959768"}],"email":"richie_fadel@west-howell.example"},"sender":{"name":"Филатова
-        Мария Эдуардовна","phones":[{"number":"+74454822021"}],"email":"josue.quitzon@crona.test"},"services":[{"code":"INSURANCE","price":967,"name":"Лоснящийся
-        Мраморный Часы"}],"packages":[{"number":"spq85gmf3m","comment":"Dolor repudiandae
-        nulla repellendus.","height":48,"length":76,"weight":2470,"width":54,"items":[{"ware_key":"mibil","payment":{"value":747,"currency":1},"name":"Легкий
-        Алюминиевый Лампа","cost":252,"amount":2,"weight":3201,"url":null}]}]}'
+      string: '{"type":1,"number":"iat2kr49o0","tariff_code":6,"comment":"Provident
+        quisquam est quo.","shipment_point":null,"delivery_point":null,"from_location":{"code":16584,"city":"Новосибирск","address":"819777
+        Россия, Ульяновск, пр. Заречная, 137"},"to_location":{"code":16584,"city":"Оренбург","address":"118609
+        Россия, Барнаул, пл. Горная, 352 кв. 839"},"recipient":{"name":"Меркушева
+        Клавдия Германовна","phones":[{"number":"+74914753536"}],"email":"everett.frami@gutkowski.test"},"sender":{"name":"Регина
+        Маслова","phones":[{"number":"+79866386997"}],"email":"sumiko.runolfsson@hamill.test"},"services":[{"code":"INSURANCE","price":574,"name":"Фантастический
+        Пластиковый Клавиатура"}],"packages":[{"number":"6h6fuv06g3","comment":"Recusandae
+        id enim rerum.","height":61,"length":91,"weight":4028,"width":93,"items":[{"ware_key":"pt5w2","payment":{"value":864,"currency":1},"name":"Удовлетворительный
+        Бронзовый Пальто","cost":459,"amount":2,"weight":493,"url":null}]}]}'
     headers:
-      Authorization:
-      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTYsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJjb250cmFnZW50LXV1aWQ6ZWQ3NWVjZjQtMzBlZC00MTUzLWFmZTktZWI4MGJiNTEyZjIyIiwic29saWQtYWRkcmVzczpmYWxzZSIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiIyQm5XN0k1SjdKdUIwNm1tR2RJTnZYeW1oVlEiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.ZW9TJPzELm2wlyEc0FA52GT-URlXy6C5kHpymZCgHYawca0L-zvCya6B-61TGKDSv-_B7Q-7nrQh9ZPy6bXbNG__l5HdxwfaIxlBEa2hOHwQvRed6fezS0iXMWyaHNKvRD9N9DHxJY-h7wZVPUOOnv37oebKDe-U4Ne_XYNxxvC_-afE06axYd0HmH1hg4b-E5W57ndTNVZG6bBo2qnycV4dz0YY3qjnCmYO2-LJip8zvNo3Fe7NsoAxMPddp74HMwcoL8KuRzH_3JhsVCHjtYZxEsFgkFR_csmBpbVXuAYDVWx0eHnavMByUXvWj2Spr6os6PJ_PJsjuJ8JiB8pjg
-      User-Agent:
-      - Faraday v1.10.3
-      Content-Type:
-      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2MTI3NzQsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJuYkFPVVpNYlFTOE9wOXZnSHlYUHVaQll4ajQiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.frIDCaq_Tcqq2KVtZbGmKUtPq3qYpgKQ6vGEU0VjvaOnQdUsXHlxcG9q83-ZCcq_b6y4IRKZ3SVzIDhoW5qSWB5yxaqPGpTc96pB4Do35D7OJMAQVVQoKzvHlYeDUJTRg_n40G1eYd6joEx1rSgKP4eZ0Ol2onA5xFQlwgpzr319gONC8mCHbghymI92oa7SZNsxaZKVHk2jprI_1M1jWnB0XYJc8QkOjG0I6GxJ1_SNavZp0zDJ7rlj0PDhCnAELzuBGcl6jB2xW8wiz5Onwd9EHqsJUmtIVNTYyjGfxmBZG0H8ekUg2Bg05sbZtxNjdfk8vdccbV5W4GR8lsGqWg
+      Content-Type:
+      - application/json
   response:
     status:
       code: 202
@@ -82,7 +85,7 @@ http_interactions:
       Server:
       - QRATOR
       Date:
-      - Fri, 19 Jul 2024 19:13:17 GMT
+      - Mon, 22 Jul 2024 00:46:14 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -93,20 +96,118 @@ http_interactions:
       - timeout=15
       Expires:
       - '0'
-      Cache-Control:
-      - no-cache, no-store, max-age=0, must-revalidate
-      X-Content-Type-Options:
-      - nosniff
-      Location:
-      - http://api-v2-integration.edu.k8s-local.cdek.ru:8000/v2/orders/b0f6a6bb-5607-485c-98f6-6035fd021276
       Pragma:
       - no-cache
       X-Xss-Protection:
       - 1; mode=block
       X-Frame-Options:
       - DENY
+      Location:
+      - http://api-v2-integration.edu.k8s-local.cdek.ru:8000/v2/orders/27cd8ffe-096b-479a-8d5a-6c040bda0fc9
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
     body:
       encoding: UTF-8
-      string: '{"entity":{"uuid":"b0f6a6bb-5607-485c-98f6-6035fd021276"},"requests":[{"request_uuid":"116f6381-0fe1-48a1-91ef-4c0bf2f56063","type":"CREATE","date_time":"2024-07-19T19:13:17+0000","state":"ACCEPTED"}],"related_entities":[]}'
-  recorded_at: Fri, 19 Jul 2024 19:13:17 GMT
+      string: '{"entity":{"uuid":"27cd8ffe-096b-479a-8d5a-6c040bda0fc9"},"requests":[{"request_uuid":"abd11756-3be7-4437-8b02-eb855bcd02be","type":"CREATE","date_time":"2024-07-22T00:46:14+0000","state":"ACCEPTED"}],"related_entities":[]}'
+  recorded_at: Mon, 22 Jul 2024 00:46:14 GMT
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.edu.cdek.ru
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 410
+      message: Gone
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 09:50:16 GMT
+      Content-Type:
+      - text/html
+      Content-Length:
+      - '136'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+    body:
+      encoding: UTF-8
+      string: "<html>\r\n<head><title>410 Gone</title></head>\r\n<body>\r\n<center><h1>410
+        Gone</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+  recorded_at: Mon, 22 Jul 2024 09:50:16 GMT
+- request:
+    method: post
+    uri: https://api.cdek.ru/v2/orders
+    body:
+      encoding: UTF-8
+      string: '{"type":1,"number":"b5yb54excx","tariff_code":1,"comment":"Reprehenderit
+        et iste optio.","shipment_point":null,"delivery_point":null,"from_location":{"code":16584,"city":"Уфа","address":"782557
+        Россия, Астрахань, Луговая ул., 501 кв. 384"},"to_location":{"code":16584,"city":"Москва","address":"198982
+        Россия, Воронеж, Коммунистическая проспект, 989 кв. 746"},"recipient":{"name":"Денис
+        Аркадьевич Денисов","phones":[{"number":"+74497304982"}],"email":"harley.harvey@runolfsson-littel.example"},"sender":{"name":"Роман
+        Игоревич Артемьев","phones":[{"number":"+78652889971"}],"email":"arlen@hoeger-senger.test"},"services":[{"code":"INSURANCE","price":878,"name":"Интеллектуальный
+        Деревянный Ремень"}],"packages":[{"number":"nbjsn2qky5","comment":"Consectetur
+        nam molestiae qui.","height":49,"length":97,"weight":1120,"width":25,"items":[{"ware_key":"qd0hr","payment":{"value":398,"currency":1},"name":"Грубый
+        Бронзовый Ремень","cost":480,"amount":2,"weight":4511,"url":null}]}]}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer test_token
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 09:52:32 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '206'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      X-Content-Type-Options:
+      - nosniff
+      Pragma:
+      - no-cache
+      X-Frame-Options:
+      - DENY
+    body:
+      encoding: UTF-8
+      string: "{\"requests\":[{\"type\":\"AUTH\",\"date_time\":\"2024-07-22T09:52:32+0000\",\"state\":\"INVALID\",\"errors\":[{\"code\":\"v2_authorization_incorrect\",\"message\":\"Authorization
+        header is incorrect\"}]}],\"related_entities\":[]}\r\n"
+  recorded_at: Mon, 22 Jul 2024 09:52:32 GMT
 recorded_with: VCR 6.2.0

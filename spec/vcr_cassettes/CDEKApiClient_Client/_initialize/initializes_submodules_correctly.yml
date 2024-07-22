@@ -1,0 +1,94 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/v2/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.edu.cdek.ru
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 00:46:17 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+      Pragma:
+      - no-cache
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      Cache-Control:
+      - no-store
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2MTI3NzcsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJjb250cmFjdDrQmNCcLdCg0KQt0JPQm9CTLTIyIiwiYWNjb3VudC1sYW5nOnJ1cyIsImFwaS12ZXJzaW9uOjEuMSIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJjb250cmFnZW50LXV1aWQ6ZWQ3NWVjZjQtMzBlZC00MTUzLWFmZTktZWI4MGJiNTEyZjIyIiwic29saWQtYWRkcmVzczpmYWxzZSIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJOT2NLSjRhZ3pZRFZEdzVULVZGWmNnNWNhb2ciLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.0kw2BrN-1XII7V7c6rpyuajCBAMMTBUVb0b-hmBUaYTAK4mL6NPy51wgbpmK3KQX07mS82gCtDksgTIcOlKv7XFu1F3oUM5ekbqER6mK-Ia3stVcW7_RK7sK5VU4tZdzlB4YmoHfA7lZIN4ve54WEo0Xhu_HpIGheeCtiBpx9_VjrCRp0KpAUa1mpZbux_Mhw6TUo0F7fwn1w6n3eny9sMb7srxiJCjIoxPYBP-16pSewLqwV_ZicFWRLlvsgfD6Htmjn2jnf24L8fhPn2hQZDR7M76n9qHQkbVkOPJY5q5cDiqo3eIVihGDm8LSy-4-fesohwBnpqe5RSSDmXwwMg","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"NOcKJ4agzYDVDw5T-VFZcg5caog"}'
+  recorded_at: Mon, 22 Jul 2024 00:46:17 GMT
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.edu.cdek.ru
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 410
+      message: Gone
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 09:50:18 GMT
+      Content-Type:
+      - text/html
+      Content-Length:
+      - '136'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+    body:
+      encoding: UTF-8
+      string: "<html>\r\n<head><title>410 Gone</title></head>\r\n<body>\r\n<center><h1>410
+        Gone</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+  recorded_at: Mon, 22 Jul 2024 09:50:18 GMT
+recorded_with: VCR 6.2.0

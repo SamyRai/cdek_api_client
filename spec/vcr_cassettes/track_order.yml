@@ -4,17 +4,19 @@ http_interactions:
     method: post
     uri: https://api.edu.cdek.ru/v2/oauth/token
     body:
-      encoding: UTF-8
-      string: client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5&grant_type=client_credentials
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5
     headers:
-      User-Agent:
-      - Faraday v1.10.3
-      Content-Type:
-      - application/x-www-form-urlencoded
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.edu.cdek.ru
+      Content-Type:
+      - application/x-www-form-urlencoded
   response:
     status:
       code: 200
@@ -23,7 +25,7 @@ http_interactions:
       Server:
       - QRATOR
       Date:
-      - Fri, 19 Jul 2024 19:13:17 GMT
+      - Mon, 22 Jul 2024 00:46:15 GMT
       Content-Type:
       - application/json;charset=utf-8
       Transfer-Encoding:
@@ -32,41 +34,41 @@ http_interactions:
       - keep-alive
       Keep-Alive:
       - timeout=15
-      Pragma:
-      - no-cache
-      Cache-Control:
-      - no-store
-      X-Content-Type-Options:
-      - nosniff
       Vary:
       - Accept-Encoding
       - Accept-Encoding
-      X-Xss-Protection:
-      - 1; mode=block
+      Cache-Control:
+      - no-store
+      Pragma:
+      - no-cache
       X-Frame-Options:
       - DENY
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTcsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJqczc1dEVPUjBFWlRIaW80ejJNd29OaHFpdFEiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.LBMsf-1kOdGznmhyxx5bREO_lqJrNZZzSRdqGUZetjOELy-CF-LVx7AjKpSQKxY8XJf_gk0XcWlatDeUxBpJ-1ooYY2jBJ9gRmgVs5r6lOlKi9Fyul3HPJVh0leoLDsu6-TtYnJpvlm64sU5d20V9WGiKj1DpY7Zlek9Ej7h2PNFeMHmt2usFSwOq3wDbxX08EDTwEQF6KEFrtDex_rZ1SAE9MM6RwlJjiUuKWdCytLjGAoM4lKJ0mXTIk5lfmf8xvHv1wmjNP47LpZAYMTr36KoM-uyec8y2zUXK74bw0I5jqQu9wc1_SAxRvPoZ6DQijLH3ixMW9NeBjS5IP10mA","token_type":"bearer","expires_in":3599,"scope":"order:all
-        payment:all","jti":"js75tEOR0EZTHio4z2MwoNhqitQ"}'
-  recorded_at: Fri, 19 Jul 2024 19:13:17 GMT
+      string: '{"access_token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2MTI3NzQsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFwaS12ZXJzaW9uOjEuMSIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJjb250cmFnZW50LXV1aWQ6ZWQ3NWVjZjQtMzBlZC00MTUzLWFmZTktZWI4MGJiNTEyZjIyIiwic29saWQtYWRkcmVzczpmYWxzZSIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiIzY3poTGRTM01mb29qSHNXVDgxUXhBT0p6am8iLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.FvFWjhodSJnRkTYefdoLx8nH-yj-F9BIxbQXo4Wnmiu4a2XFZNywXp6gGuUBIwVKf_GCE7VQGuseirxFbbloqNPAYhglSP7JbI440FPoFu7_ZPgZd9erz6fTc_VA-jOXBAHwiHW-DC76ml6ci5nm0OiCRzpH-qBA-U_XrNehrgwklIW39YZpHLutIOKNUQcsZE1elbog3dC27EKfzFHNbszBbOiPE4LxizYUzwzvtHMeCPbMgoRx2CeUWQJqg56ad-YvGJaRiyK2DehjF2vQI3c7AqCs77YI8eTCMYkEu9kyuyfbJTBaqXTm-UkNMv0DnvjgnNWEBZxCKTHnBg1QtA","token_type":"bearer","expires_in":3599,"scope":"order:all
+        payment:all","jti":"3czhLdS3MfoojHsWT81QxAOJzjo"}'
+  recorded_at: Mon, 22 Jul 2024 00:46:14 GMT
 - request:
     method: get
-    uri: https://api.edu.cdek.ru/v2/orders/b0f6a6bb-5607-485c-98f6-6035fd021276
+    uri: https://api.edu.cdek.ru/v2/orders/27cd8ffe-096b-479a-8d5a-6c040bda0fc9
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Authorization:
-      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE0MTk5OTcsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJhcGktdmVyc2lvbjoxLjEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJzb2xpZC1hZGRyZXNzOmZhbHNlIiwiY29udHJhZ2VudC11dWlkOmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiJqczc1dEVPUjBFWlRIaW80ejJNd29OaHFpdFEiLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.LBMsf-1kOdGznmhyxx5bREO_lqJrNZZzSRdqGUZetjOELy-CF-LVx7AjKpSQKxY8XJf_gk0XcWlatDeUxBpJ-1ooYY2jBJ9gRmgVs5r6lOlKi9Fyul3HPJVh0leoLDsu6-TtYnJpvlm64sU5d20V9WGiKj1DpY7Zlek9Ej7h2PNFeMHmt2usFSwOq3wDbxX08EDTwEQF6KEFrtDex_rZ1SAE9MM6RwlJjiUuKWdCytLjGAoM4lKJ0mXTIk5lfmf8xvHv1wmjNP47LpZAYMTr36KoM-uyec8y2zUXK74bw0I5jqQu9wc1_SAxRvPoZ6DQijLH3ixMW9NeBjS5IP10mA
-      User-Agent:
-      - Faraday v1.10.3
-      Content-Type:
-      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
+      User-Agent:
+      - Ruby
+      Authorization:
+      - Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJvcmRlcjphbGwiLCJwYXltZW50OmFsbCJdLCJleHAiOjE3MjE2MTI3NzQsImF1dGhvcml0aWVzIjpbInNoYXJkLWlkOnJ1LTAxIiwiY2xpZW50LWNpdHk60J3QvtCy0L7RgdC40LHQuNGA0YHQuiwg0J3QvtCy0L7RgdC40LHQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0YwiLCJhY2NvdW50LWxhbmc6cnVzIiwiY29udHJhY3Q60JjQnC3QoNCkLdCT0JvQky0yMiIsImFwaS12ZXJzaW9uOjEuMSIsImFjY291bnQtdXVpZDplOTI1YmQwZi0wNWE2LTRjNTYtYjczNy00Yjk5YzE0ZjY2OWEiLCJjbGllbnQtaWQtZWM1OmVkNzVlY2Y0LTMwZWQtNDE1My1hZmU5LWViODBiYjUxMmYyMiIsImNvbnRyYWN0LWlkOmRlNDJjYjcxLTZjOGMtNGNmNS04MjIyLWNmYjY2MDQ0ZThkZiIsImNsaWVudC1pZC1lYzQ6MTQzNDgyMzEiLCJjb250cmFnZW50LXV1aWQ6ZWQ3NWVjZjQtMzBlZC00MTUzLWFmZTktZWI4MGJiNTEyZjIyIiwic29saWQtYWRkcmVzczpmYWxzZSIsImZ1bGwtbmFtZTrQotC10YHRgtC40YDQvtCy0LDQvdC40LUg0JjQvdGC0LXQs9GA0LDRhtC40Lgg0JjQnCJdLCJqdGkiOiIzY3poTGRTM01mb29qSHNXVDgxUXhBT0p6am8iLCJjbGllbnRfaWQiOiJ3cUd3aVF4MGdnOG1MdGlFS3NVaW5qVlNJQ0NqdFRFUCJ9.FvFWjhodSJnRkTYefdoLx8nH-yj-F9BIxbQXo4Wnmiu4a2XFZNywXp6gGuUBIwVKf_GCE7VQGuseirxFbbloqNPAYhglSP7JbI440FPoFu7_ZPgZd9erz6fTc_VA-jOXBAHwiHW-DC76ml6ci5nm0OiCRzpH-qBA-U_XrNehrgwklIW39YZpHLutIOKNUQcsZE1elbog3dC27EKfzFHNbszBbOiPE4LxizYUzwzvtHMeCPbMgoRx2CeUWQJqg56ad-YvGJaRiyK2DehjF2vQI3c7AqCs77YI8eTCMYkEu9kyuyfbJTBaqXTm-UkNMv0DnvjgnNWEBZxCKTHnBg1QtA
+      Content-Type:
+      - application/json
   response:
     status:
       code: 200
@@ -75,7 +77,7 @@ http_interactions:
       Server:
       - QRATOR
       Date:
-      - Fri, 19 Jul 2024 19:13:17 GMT
+      - Mon, 22 Jul 2024 00:46:15 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -84,24 +86,63 @@ http_interactions:
       - keep-alive
       Keep-Alive:
       - timeout=15
-      Pragma:
-      - no-cache
-      X-Frame-Options:
-      - DENY
+      Expires:
+      - '0'
       Vary:
       - Accept-Encoding
       - Accept-Encoding
-      Expires:
-      - '0'
-      X-Xss-Protection:
-      - 1; mode=block
-      Cache-Control:
-      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
       X-Content-Type-Options:
       - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJlbnRpdHkiOnsidXVpZCI6ImIwZjZhNmJiLTU2MDctNDg1Yy05OGY2LTYwMzVmZDAyMTI3NiIsInR5cGUiOjEsIm51bWJlciI6IjAyamMxYnYxbG4iLCJ0YXJpZmZfY29kZSI6NCwiY29tbWVudCI6IkVzdCByZXBlbGxlbmR1cyBpbiBzaXQuIiwic2VuZGVyIjp7Im5hbWUiOiLQpNC40LvQsNGC0L7QstCwINCc0LDRgNC40Y8g0K3QtNGD0LDRgNC00L7QstC90LAiLCJlbWFpbCI6Impvc3VlLnF1aXR6b25AY3JvbmEudGVzdCIsInBob25lcyI6W3sibnVtYmVyIjoiKzc0NDU0ODIyMDIxIn1dfSwicmVjaXBpZW50Ijp7Im5hbWUiOiLQn9GA0L7RhdC+0YDQvtCy0LAg0JfQvtGPINCh0LXQvNGR0L3QvtCy0L3QsCIsImVtYWlsIjoicmljaGllX2ZhZGVsQHdlc3QtaG93ZWxsLmV4YW1wbGUiLCJwaG9uZXMiOlt7Im51bWJlciI6Iis3MTMwNTk1OTc2OCJ9XX0sImZyb21fbG9jYXRpb24iOnsiY29kZSI6MTY1ODQsImNpdHkiOiLQmtC40YDQvtCyIiwiYWRkcmVzcyI6Ijg1MTM1MiDQoNC+0YHRgdC40Y8sINCR0YDRj9C90YHQuiwg0L/Qu9C+0YnQsNC00Ywg0JrQvtC80YHQvtC80L7Qu9GM0YHQutCw0Y8sIDY0NCDQutCyLiAzMzkifSwidG9fbG9jYXRpb24iOnsiY29kZSI6MTY1ODQsImNpdHkiOiLQotGD0LvQsCIsImFkZHJlc3MiOiI2Mjc3NjEg0KDQvtGB0YHQuNGPLCDQmtGD0YDRgdC6LCDQp9C10YXQvtCy0LAg0YPQu9C40YbQsCwgMTU2In0sInNlcnZpY2VzIjpbeyJjb2RlIjoiSU5TVVJBTkNFIn1dLCJwYWNrYWdlcyI6W3sibnVtYmVyIjoic3BxODVnbWYzbSIsIndlaWdodCI6MjQ3MCwibGVuZ3RoIjo3Niwid2lkdGgiOjU0LCJoZWlnaHQiOjQ4LCJjb21tZW50IjoiRG9sb3IgcmVwdWRpYW5kYWUgbnVsbGEgcmVwZWxsZW5kdXMuIiwiaXRlbXMiOlt7Im5hbWUiOiLQm9C10LPQutC40Lkg0JDQu9GO0LzQuNC90LjQtdCy0YvQuSDQm9Cw0LzQv9CwIiwid2FyZV9rZXkiOiJtaWJpbCIsInBheW1lbnQiOnsidmFsdWUiOjc0N30sIndlaWdodCI6MzIwMSwiYW1vdW50IjoyLCJjb3N0IjoyNTJ9XX1dLCJzdGF0dXNlcyI6W3siY29kZSI6IklOVkFMSUQiLCJuYW1lIjoi0J3QtdC60L7RgNGA0LXQutGC0L3Ri9C5INC30LDQutCw0LciLCJkYXRlX3RpbWUiOiIyMDI0LTA3LTE5VDE5OjEzOjE3KzAwMDAiLCJjaXR5Ijoi0J7RhNC40YEg0KHQlNCt0JoifSx7ImNvZGUiOiJBQ0NFUFRFRCIsIm5hbWUiOiLQn9GA0LjQvdGP0YIiLCJkYXRlX3RpbWUiOiIyMDI0LTA3LTE5VDE5OjEzOjE3KzAwMDAiLCJjaXR5Ijoi0J7RhNC40YEg0KHQlNCt0JoifV19LCJyZXF1ZXN0cyI6W3sicmVxdWVzdF91dWlkIjoiMTE2ZjYzODEtMGZlMS00OGExLTkxZWYtNGMwYmYyZjU2MDYzIiwidHlwZSI6IkNSRUFURSIsImRhdGVfdGltZSI6IjIwMjQtMDctMTlUMTk6MTM6MTcrMDAwMCIsInN0YXRlIjoiSU5WQUxJRCIsImVycm9ycyI6W3siY29kZSI6IkVSUl9JTlZBTElEX1RBUklGRlRZUEVDT0RFIiwibWVzc2FnZSI6ItCd0LXQstC10YDQvdC+INC30LDQtNCw0L0g0YLQuNC/INGC0LDRgNC40YTQsCJ9XX1dLCJyZWxhdGVkX2VudGl0aWVzIjpbXX0=
-  recorded_at: Fri, 19 Jul 2024 19:13:17 GMT
+        eyJlbnRpdHkiOnsidXVpZCI6IjI3Y2Q4ZmZlLTA5NmItNDc5YS04ZDVhLTZjMDQwYmRhMGZjOSIsInR5cGUiOjEsIm51bWJlciI6ImlhdDJrcjQ5bzAiLCJ0YXJpZmZfY29kZSI6NiwiY29tbWVudCI6IlByb3ZpZGVudCBxdWlzcXVhbSBlc3QgcXVvLiIsInNlbmRlciI6eyJuYW1lIjoi0KDQtdCz0LjQvdCwINCc0LDRgdC70L7QstCwIiwiZW1haWwiOiJzdW1pa28ucnVub2xmc3NvbkBoYW1pbGwudGVzdCIsInBob25lcyI6W3sibnVtYmVyIjoiKzc5ODY2Mzg2OTk3In1dfSwicmVjaXBpZW50Ijp7Im5hbWUiOiLQnNC10YDQutGD0YjQtdCy0LAg0JrQu9Cw0LLQtNC40Y8g0JPQtdGA0LzQsNC90L7QstC90LAiLCJlbWFpbCI6ImV2ZXJldHQuZnJhbWlAZ3V0a293c2tpLnRlc3QiLCJwaG9uZXMiOlt7Im51bWJlciI6Iis3NDkxNDc1MzUzNiJ9XX0sImZyb21fbG9jYXRpb24iOnsiY29kZSI6MTY1ODQsImNpdHkiOiLQndC+0LLQvtGB0LjQsdC40YDRgdC6IiwiYWRkcmVzcyI6IjgxOTc3NyDQoNC+0YHRgdC40Y8sINCj0LvRjNGP0L3QvtCy0YHQuiwg0L/RgC4g0JfQsNGA0LXRh9C90LDRjywgMTM3In0sInRvX2xvY2F0aW9uIjp7ImNvZGUiOjE2NTg0LCJjaXR5Ijoi0J7RgNC10L3QsdGD0YDQsyIsImFkZHJlc3MiOiIxMTg2MDkg0KDQvtGB0YHQuNGPLCDQkdCw0YDQvdCw0YPQuywg0L/Quy4g0JPQvtGA0L3QsNGPLCAzNTIg0LrQsi4gODM5In0sInNlcnZpY2VzIjpbeyJjb2RlIjoiSU5TVVJBTkNFIn1dLCJwYWNrYWdlcyI6W3sibnVtYmVyIjoiNmg2ZnV2MDZnMyIsIndlaWdodCI6NDAyOCwibGVuZ3RoIjo5MSwid2lkdGgiOjkzLCJoZWlnaHQiOjYxLCJjb21tZW50IjoiUmVjdXNhbmRhZSBpZCBlbmltIHJlcnVtLiIsIml0ZW1zIjpbeyJuYW1lIjoi0KPQtNC+0LLQu9C10YLQstC+0YDQuNGC0LXQu9GM0L3Ri9C5INCR0YDQvtC90LfQvtCy0YvQuSDQn9Cw0LvRjNGC0L4iLCJ3YXJlX2tleSI6InB0NXcyIiwicGF5bWVudCI6eyJ2YWx1ZSI6ODY0fSwid2VpZ2h0Ijo0OTMsImFtb3VudCI6MiwiY29zdCI6NDU5fV19XSwic3RhdHVzZXMiOlt7ImNvZGUiOiJJTlZBTElEIiwibmFtZSI6ItCd0LXQutC+0YDRgNC10LrRgtC90YvQuSDQt9Cw0LrQsNC3IiwiZGF0ZV90aW1lIjoiMjAyNC0wNy0yMlQwMDo0NjoxNCswMDAwIiwiY2l0eSI6ItCe0YTQuNGBINCh0JTQrdCaIn0seyJjb2RlIjoiQUNDRVBURUQiLCJuYW1lIjoi0J/RgNC40L3Rj9GCIiwiZGF0ZV90aW1lIjoiMjAyNC0wNy0yMlQwMDo0NjoxNCswMDAwIiwiY2l0eSI6ItCe0YTQuNGBINCh0JTQrdCaIn1dfSwicmVxdWVzdHMiOlt7InJlcXVlc3RfdXVpZCI6ImFiZDExNzU2LTNiZTctNDQzNy04YjAyLWViODU1YmNkMDJiZSIsInR5cGUiOiJDUkVBVEUiLCJkYXRlX3RpbWUiOiIyMDI0LTA3LTIyVDAwOjQ2OjE0KzAwMDAiLCJzdGF0ZSI6IklOVkFMSUQiLCJlcnJvcnMiOlt7ImNvZGUiOiJFUlJfSU5WQUxJRF9UQVJJRkZUWVBFQ09ERSIsIm1lc3NhZ2UiOiLQndC10LLQtdGA0L3QviDQt9Cw0LTQsNC9INGC0LjQvyDRgtCw0YDQuNGE0LAifV19XSwicmVsYXRlZF9lbnRpdGllcyI6W119
+  recorded_at: Mon, 22 Jul 2024 00:46:15 GMT
+- request:
+    method: post
+    uri: https://api.edu.cdek.ru/oauth/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=client_credentials&client_id=wqGwiQx0gg8mLtiEKsUinjVSICCjtTEP&client_secret=RmAmgvSgSl1yirlz9QupbzOJVqhCxcP5
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.edu.cdek.ru
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 410
+      message: Gone
+    headers:
+      Server:
+      - QRATOR
+      Date:
+      - Mon, 22 Jul 2024 09:50:17 GMT
+      Content-Type:
+      - text/html
+      Content-Length:
+      - '136'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=15
+    body:
+      encoding: UTF-8
+      string: "<html>\r\n<head><title>410 Gone</title></head>\r\n<body>\r\n<center><h1>410
+        Gone</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+  recorded_at: Mon, 22 Jul 2024 09:50:17 GMT
 recorded_with: VCR 6.2.0

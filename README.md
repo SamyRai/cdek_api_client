@@ -1,3 +1,6 @@
+Here's the updated README with the necessary additions:
+
+````markdown
 # CDEK API Client
 
 [![Gem Version](https://badge.fury.io/rb/cdek_api_client.svg)](https://badge.fury.io/rb/cdek_api_client)
@@ -25,6 +28,8 @@ This Readme is also available in:
   - [Sender](#sender)
   - [Package](#package)
   - [Item](#item)
+- [TODO List](#todo-list)
+- [Changelog](#changelog)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -32,15 +37,16 @@ This Readme is also available in:
 
 Add this line to your application's Gemfile:
 
-````ruby
+```ruby
 gem 'cdek_api_client'
-```g
+```
+````
 
 And then execute:
 
 ```sh
 bundle install
-````
+```
 
 Or install it yourself as:
 
@@ -288,16 +294,17 @@ Attributes:
 
 ## TODO List
 
-- [ ] Restructure the codebase for better organization.
+- [x] Restructure the codebase for better organization.
 - [ ] Add mappings for CDEK internal codes.
 - [ ] Add more API endpoints and data entities.
 - [ ] Check all attributes for required and optional fields.
 - [ ] Add documentation for all classes and methods.
 
-## Contributing
+## Changelog
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/your-username/cdek_api_client](https://github.com/your-username/cdek_api_client).
+### v1.1.0
 
-## License
-
-The gem is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+- **Added**: Improved error handling and response parsing in `Client`.
+- **Updated**: Code structure for better organization.
+- **Updated**: Specs for `Client` and `API` classes.
+- **Updated**: `README.md` with detailed usage examples
