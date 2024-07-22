@@ -2,12 +2,24 @@
 
 [![Gem Version](https://badge.fury.io/rb/cdek_api_client.svg)](https://badge.fury.io/rb/cdek_api_client)
 
-A Ruby client for interacting with the CDEK API, providing functionalities for order creation, tracking, tariff calculation, location data retrieval, and webhook management. This gem ensures clean, robust, and maintainable code with proper validations.
+### Other Languages
 
-This Readme is also available in:
+- [Русский](README_RUS.md)
+- [Татарча](README_TAT.md)
+- [English](README.md)
 
-- [Russian](README_RUS.md)
-- [Tatar](README_TAT.md)
+**Important:** This gem is in the early stages of development and it is shared as it is. Any support for development or feedback is welcome; please check the [Contributing](#contributing) section for more information.
+
+## Overview
+
+CDEK ([СДЭК](https://www.cdek.ru/)) is a big logistics company in Russia, that provides a wide range of delivery services for businesses and individuals. The [CDEK API](https://www.cdek.ru/ru/integration/api) allows developers to integrate CDEK's services into their applications, enabling functionalities such as order creation, tracking, tariff calculation, location data retrieval, and webhook management.
+
+The `cdek_api_client` gem offers a clean and robust interface to interact with the CDEK API, ensuring maintainable code with proper validations. This gem supports the following features:
+
+- Creating and tracking orders
+- Calculating tariffs
+- Retrieving location data (cities, regions, postal codes, and offices)
+- Managing webhooks
 
 ## Table of Contents
 
@@ -227,7 +239,7 @@ end
 
 The gem has pre-cached values and uses them by default. Users can override this behavior by fetching live data.
 
-You can fetch cities, regions, offices, and postal codes data directly from CDEK API.
+You can fetch cities, regions, offices, and postal code data directly from CDEK API.
 
 ```ruby
 
@@ -275,7 +287,7 @@ Attributes:
 - `recipient` (Recipient, required): The recipient details.
 - `sender` (Sender, required): The sender details.
 - `from_location` (Hash, required): The location details from where the order is shipped.
-- `to_location` (Hash, required): The location details to where the order is shipped.
+- `to_location` (Hash, required): The location details of where the order is shipped.
 - `services` (Array): Additional services.
 - `packages` (Array, required): List of packages.
 
@@ -291,7 +303,7 @@ Attributes:
 
 ### Sender
 
-Represents the sender details.
+Represents the sender's details.
 
 Attributes:
 
