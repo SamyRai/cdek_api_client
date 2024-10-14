@@ -66,11 +66,10 @@ GEM
     rubocop-rspec (3.1.0)
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
-    strscan (3.1.0)
     unicode-display_width (2.5.0)
     vcr (6.3.1)
       base64
-    webmock (3.23.1)
+    webmock (3.24.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -88,7 +87,7 @@ DEPENDENCIES
   rubocop (~> 1.65.0)
   rubocop-rspec (~> 3)
   vcr (~> 6.3.1)
-  webmock (~> 3.23.1)
+  webmock (~> 3.24.0)
   yard (~> 0.9.36)
 
 BUNDLED WITH
