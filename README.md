@@ -8,7 +8,7 @@
 - [Татарча](README_TAT.md)
 - [English](README.md)
 
-**Important:** This gem is in the early stages of development and it is shared as it is. Any support for development or feedback is welcome; please check the [Contributing](#contributing) section for more information.
+> [!WARNING] >**Important:** This gem is in the early stages of development and it is shared as it is. Any support for development or feedback is welcome; please check the [Contributing](#contributing) section for more information.
 
 ## Overview
 
@@ -348,17 +348,7 @@ Attributes:
 
 ## Changelog
 
-### v0.2.1
-
-- **Updated**: Changed links to Changelog and the Gem homepage in the gemspec.
-- **Added**: Add new commands to a `Makefile` for tagging a new version and pushing it to GitHub.
-
-### v0.2.0
-
-- **Added**: Improved error handling and response parsing in `Client`.
-- **Updated**: Code structure for better organization.
-- **Updated**: Specs for `Client` and `API` classes.
-- **Updated**: `README.md` with detailed usage examples, including fetching and saving location data with optional live data fetching.
+(See [CHANGELOG.md](CHANGELOG.md))
 
 ## Contributing
 
