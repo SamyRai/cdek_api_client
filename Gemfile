@@ -11,9 +11,9 @@ group :development do
   gem 'faker', '~> 3.4.2'
   gem 'pry', '~> 0.14.1'
   gem 'rspec', '~> 3.13.0'
-  gem 'rubocop', '~> 1.65.0'
+  gem 'rubocop', '~> 1.66.1'
   gem 'rubocop-rspec', '~> 3'
-  gem 'vcr', '~> 6.2.0'
+  gem 'vcr', '~> 6.3.1'
   gem 'yard', '~> 0.9.37'
-  gem 'webmock', '~> 3.23.1'
+  gem 'webmock', '~> 3.24.0'
 end
