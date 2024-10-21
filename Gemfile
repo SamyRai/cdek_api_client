@@ -8,7 +8,7 @@ gemspec
 # Development dependencies
 
 group :development do
-  gem 'faker', '~> 3.4.2'
+  gem 'faker', '~> 3.5.1'
   gem 'pry', '~> 0.14.1'
   gem 'rspec', '~> 3.13.0'
   gem 'rubocop', '~> 1.66.1'
