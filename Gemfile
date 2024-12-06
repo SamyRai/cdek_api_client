@@ -9,7 +9,7 @@ gemspec
 
 group :development do
   gem 'faker', '~> 3.4.2'
-  gem 'pry', '~> 0.14.1'
+  gem 'pry', '~> 0.15.0'
   gem 'rspec', '~> 3.13.0'
   gem 'rubocop', '~> 1.66.1'
   gem 'rubocop-rspec', '~> 3'
