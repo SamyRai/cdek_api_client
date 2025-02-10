@@ -11,7 +11,7 @@ group :development do
   gem 'faker', '~> 3.4.2'
   gem 'pry', '~> 0.15.0'
   gem 'rspec', '~> 3.13.0'
-  gem 'rubocop', '~> 1.69.1'
+  gem 'rubocop', '~> 1.71.2'
   gem 'rubocop-rspec', '~> 3'
   gem 'vcr', '~> 6.3.1'
   gem 'yard', '~> 0.9.37'
