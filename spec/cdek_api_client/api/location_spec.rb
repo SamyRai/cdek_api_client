@@ -166,4 +166,32 @@ RSpec.describe CDEKApiClient::API::Location, :vcr do
       raise e
     end
   end
+
+  describe '#postal_codes' do
+    context 'when use_live_data is false' do
+      it 'retrieves a list of postal codes from the file system' do
+        response = location.postal_codes
+        expect(response).to be_an(Array)
+      end
+    end
+
+    context 'when city_code is nil' do
+      it 'retrieves a list of postal codes' do
+        VCR.use_cassette('list_postal_codes') do
+          response = location.postal_codes(nil, use_live_data: true)
+          expect(response).to be_an(Array)
+        end
+      end
+    end
+  end
+
+  describe '#read_data_from_file' do
+    context 'when the file does not exist' do
+      it 'logs an error and returns an error hash' do
+        expect(client.logger).to receive(:error).with("Failed to read data from file: No such file or directory @ rb_sysopen - data/test.json")
+        response = location.send(:read_data_from_file, 'test.json')
+        expect(response).to eq({ 'error' => "No such file or directory @ rb_sysopen - data/test.json" })
+      end
+    end
+  end
 end

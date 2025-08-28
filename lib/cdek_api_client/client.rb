@@ -80,6 +80,10 @@ module CDEKApiClient
       { 'error' => e.message }
     end
 
+    def validate_uuid(uuid)
+      raise ArgumentError, 'Invalid UUID format' unless uuid&.match?(/\A[\da-f]{8}-([\da-f]{4}-){3}[\da-f]{12}\z/i)
+    end
+
     private
 
     # Builds an HTTP request with the specified method, URI, and body.
@@ -112,8 +116,9 @@ module CDEKApiClient
       when Array, Hash
         response
       else
+        parsed_response = parse_json(response.body) if response.body
         log_error("Unexpected response type: #{response.class}")
-        { 'error' => "Unexpected response type: #{response.class}" }
+        { 'error' => parsed_response || "Unexpected response type: #{response.class}" }
       end
     rescue JSON::ParserError => e
       log_error("Failed to parse response: #{e.message}")
