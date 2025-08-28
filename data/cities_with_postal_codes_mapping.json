@@ -5592,7 +5592,7 @@
       "country": "Россия",
       "region": "Ростовская область",
       "region_code": 45,
-      "longitude": 39.90259,
+      "longitude": 39.902589999999996,
       "latitude": 47.785891,
       "time_zone": "Europe/Moscow",
       "payment_limit": 0.0
@@ -17184,7 +17184,7 @@
       "country": "Россия",
       "region": "Ханты-Мансийский автономный округ - Югра",
       "region_code": 11,
-      "longitude": 75.170026,
+      "longitude": 75.17002599999999,
       "latitude": 61.263059,
       "time_zone": "Asia/Yekaterinburg",
       "payment_limit": -1.0
@@ -21353,7 +21353,7 @@
       "region": "Алтайский край",
       "region_code": 2,
       "longitude": 79.539413,
-      "latitude": 53.623386,
+      "latitude": 53.623386000000004,
       "time_zone": "Asia/Barnaul",
       "payment_limit": 0.0
     },

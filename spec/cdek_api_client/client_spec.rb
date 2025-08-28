@@ -2,49 +2,74 @@
 
 require 'spec_helper'
 
-RSpec.describe CDEKApiClient::Client, :vcr do
+RSpec.describe CDEKApiClient::Client do
   include ClientHelper
 
   describe '#initialize' do
-    it 'initializes order submodule correctly' do
+    it 'initializes submodules correctly' do
       expect(client.order).to be_a(CDEKApiClient::API::Order)
-    end
-
-    it 'initializes location submodule correctly' do
       expect(client.location).to be_a(CDEKApiClient::API::Location)
-    end
-
-    it 'initializes tariff submodule correctly' do
       expect(client.tariff).to be_a(CDEKApiClient::API::Tariff)
-    end
-
-    it 'initializes webhook submodule correctly' do
       expect(client.webhook).to be_a(CDEKApiClient::API::Webhook)
     end
   end
 
   describe '#authenticate' do
-    let(:token) { client.authenticate }
-
     context 'when authentication is successful' do
-      before do
-        VCR.use_cassette('authenticate') { token }
-      end
-
       it 'retrieves an access token' do
-        expect(token).not_to be_nil
-      end
-
-      it 'is a string' do
-        expect(token).to be_a(String)
+        expect(client.token).to be_a(String)
       end
     end
 
     context 'when authentication fails' do
+      before do
+        stub_request(:post, 'https://api.edu.cdek.ru/v2/oauth/token')
+          .to_return(status: 500, body: 'Internal Server Error')
+      end
+
       it 'raises an error' do
-        response_double = instance_double(Net::HTTPResponse, is_a?: false, body: 'Error')
-        allow(Net::HTTP).to receive(:post_form).and_return(response_double)
-        expect { client.authenticate }.to raise_error(RuntimeError, 'Error getting token: Error')
+        expect { client }.to raise_error(RuntimeError, 'Error getting token: Internal Server Error')
+      end
+    end
+  end
+
+  describe '#request' do
+    before do
+      allow_any_instance_of(described_class).to receive(:authenticate).and_return('test_token')
+    end
+
+    context 'when the request fails' do
+      before do
+        allow_any_instance_of(Net::HTTP).to receive(:request).and_raise(StandardError, 'test error')
+      end
+
+      it 'returns an error hash' do
+        response = client.request('get', 'test_path')
+        expect(response).to eq({ 'error' => 'test error' })
+      end
+    end
+
+    context 'when the response is not successful' do
+      before do
+        stub_request(:get, 'https://api.edu.cdek.ru/v2/test_path')
+          .to_return(status: 500, body: 'Internal Server Error')
+      end
+
+      it 'returns an error hash' do
+        response = client.request('get', 'test_path')
+        expect(response).to eq({ 'error' => { 'error' => "Failed to parse JSON body: unexpected token 'Internal' at line 1 column 1" } })
+      end
+    end
+
+    context 'when the response body is not a valid JSON' do
+      before do
+        stub_request(:get, 'https://api.edu.cdek.ru/v2/test_path')
+          .to_return(status: 200, body: 'invalid json')
+      end
+
+      it 'returns an error hash' do
+        response = client.request('get', 'test_path')
+        expect(response['error']).to match(/Failed to parse JSON body/)
       end
     end
   end

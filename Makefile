@@ -31,10 +31,15 @@ push:
 	git push origin v$(GEM_VERSION)
 	git push origin main
 
+# Build the docker image
+build:
+	@echo "Building the docker image..."
+	sudo docker-compose build
+
 # Run tests
 test:
 	@echo "Running tests..."
-	bundle exec rspec
+	sudo docker-compose run --rm app
 
 # Clean up generated files
 clean:

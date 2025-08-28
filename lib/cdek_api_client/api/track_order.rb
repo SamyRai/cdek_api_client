@@ -22,7 +22,7 @@ module CDEKApiClient
       def get(order_uuid)
         validate_uuid(order_uuid)
 
-        response = @client.auth_connection.get(format(TRACK_ORDER_URL, uuid: order_uuid))
+        response = @client.request('get', "orders/#{order_uuid}")
         handle_response(response)
       end
 
@@ -33,7 +33,7 @@ module CDEKApiClient
       # @param uuid [String] the UUID to validate.
       # @raise [ArgumentError] if the UUID is invalid.
       def validate_uuid(uuid)
-        @client.send(:validate_uuid, uuid)
+        @client.validate_uuid(uuid)
       end
 
       # Handles the response from the API.
