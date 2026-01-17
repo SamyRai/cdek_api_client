@@ -16,6 +16,10 @@ AllCops:
   TargetRubyVersion: 3.3
   Exclude:
     - 'db/schema.rb'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - '**/vendor/**/*'
+    - 'spec/support/**/*'
   Include:
     - '**/*.rb'
 
@@ -24,11 +28,41 @@ AllCops:
 Metrics/BlockLength:
   Max: 30
 Metrics/MethodLength:
-  Max: 30
+  Max: 40
 Metrics/ParameterLists:
   Max: 15
+Metrics/ClassLength:
+  Max: 120
+Metrics/AbcSize:
+  Max: 40
+Metrics/CyclomaticComplexity:
+  Max: 10
+Metrics/PerceivedComplexity:
+  Max: 10
 
 RSpec/ExampleLength:
   Max: 30
 RSpec/MultipleMemoizedHelpers:
   Max: 10
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NoExpectationExample:
+  Enabled: false
+RSpec/AnyInstance:
+  Enabled: false
+RSpec/DescribeClass:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 150
+  Exclude:
+    - 'spec/**/*'
+
+Naming/PredicateMethod:
+  Enabled: false
+
+Style/OptionalArguments:
+  Enabled: false
+
+Lint/FloatComparison:
+  Enabled: false

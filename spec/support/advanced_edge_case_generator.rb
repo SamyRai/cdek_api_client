@@ -29,20 +29,20 @@ class AdvancedEdgeCaseGenerator
       violations = []
 
       schema['properties']&.each do |prop_name, prop_schema|
-          next unless prop_schema.is_a?(Hash)
+        next unless prop_schema.is_a?(Hash)
 
-          valid_data = SchemaDrivenGenerator.generate_from_schema(prop_schema)
+        valid_data = SchemaDrivenGenerator.generate_from_schema(prop_schema)
 
-          # Generate violations based on constraint type
-          case prop_schema['type']
-          when 'string'
-            violations.concat(generate_string_violations(prop_name, prop_schema, valid_data))
-          when 'integer', 'number'
-            violations.concat(generate_numeric_violations(prop_name, prop_schema, valid_data))
-          when 'array'
-            violations.concat(generate_array_violations(prop_name, prop_schema, valid_data))
-          end
+        # Generate violations based on constraint type
+        case prop_schema['type']
+        when 'string'
+          violations.concat(generate_string_violations(prop_name, prop_schema, valid_data))
+        when 'integer', 'number'
+          violations.concat(generate_numeric_violations(prop_name, prop_schema, valid_data))
+        when 'array'
+          violations.concat(generate_array_violations(prop_name, prop_schema, valid_data))
         end
+      end
 
       violations
     end
@@ -100,21 +100,19 @@ class AdvancedEdgeCaseGenerator
       mismatches = []
 
       schema['properties']&.each do |prop_name, prop_schema|
-          next unless prop_schema.is_a?(Hash)
+        next unless prop_schema.is_a?(Hash)
 
-          type_map = {
-            'string' => 12_345,
-            'integer' => 'not_an_integer',
-            'number' => 'not_a_number',
-            'boolean' => 'not_a_boolean',
-            'object' => 'not_an_object',
-            'array' => 'not_an_array'
-          }
+        type_map = {
+          'string' => 12_345,
+          'integer' => 'not_an_integer',
+          'number' => 'not_a_number',
+          'boolean' => 'not_a_boolean',
+          'object' => 'not_an_object',
+          'array' => 'not_an_array'
+        }
 
-          if prop_schema['type'] && type_map[prop_schema['type']]
-            mismatches << { prop_name => type_map[prop_schema['type']] }
-          end
-        end
+        mismatches << { prop_name => type_map[prop_schema['type']] } if prop_schema['type'] && type_map[prop_schema['type']]
+      end
 
       mismatches
     end

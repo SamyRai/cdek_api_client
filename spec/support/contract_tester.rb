@@ -17,9 +17,7 @@ class ContractTester
 
       # Validate request data against schema
       request_validation = SchemaValidator.validate_request(path, method, request_data)
-      unless request_validation[:valid]
-        raise "Generated request data is invalid: #{request_validation[:errors].join(', ')}"
-      end
+      raise "Generated request data is invalid: #{request_validation[:errors].join(', ')}" unless request_validation[:valid]
 
       # Execute the API call
       begin
@@ -31,9 +29,7 @@ class ContractTester
       # Validate response data against schema
       success_status = find_success_status_code(path, method)
       response_validation = SchemaValidator.validate_response(path, method, success_status, response_data)
-      unless response_validation[:valid]
-        raise "Response data does not match schema: #{response_validation[:errors].join(', ')}"
-      end
+      raise "Response data does not match schema: #{response_validation[:errors].join(', ')}" unless response_validation[:valid]
 
       # Return the response for further testing if needed
       response_data

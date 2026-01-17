@@ -48,12 +48,12 @@ module CDEKApiClient
                 'city_code is required'
         end
 
-        if use_live_data
-          response = @client.request('get', "location/postalcodes?code=#{city_code}")
-        else
-          response = read_data_from_file("postal_codes_#{city_code}_mapping.json")
-        end
-response.is_a?(Hash) && response.key?('postal_codes') ? response['postal_codes'] : response
+        response = if use_live_data
+                     @client.request('get', "location/postalcodes?code=#{city_code}")
+                   else
+                     read_data_from_file("postal_codes_#{city_code}_mapping.json")
+                   end
+        response.is_a?(Hash) && response.key?('postal_codes') ? response['postal_codes'] : response
       end
 
       private

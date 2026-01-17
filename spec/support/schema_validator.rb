@@ -73,9 +73,8 @@ class SchemaValidator
 
         # If no context schema, try direct validation with the subschema
         schemer = JSONSchemer.schema(schema)
-        validation_errors = []
-        schemer.validate(data).each do |error|
-          validation_errors << format_json_schema_error(error)
+        validation_errors = schemer.validate(data).map do |error|
+          format_json_schema_error(error)
         end
 
         {
@@ -177,9 +176,7 @@ class SchemaValidator
       return unless data.is_a?(Array)
 
       # Check minimum items
-      if schema['minItems'] && data.size < schema['minItems']
-        errors << "Array must have at least #{schema['minItems']} items at #{path}"
-      end
+      errors << "Array must have at least #{schema['minItems']} items at #{path}" if schema['minItems'] && data.size < schema['minItems']
 
       # Validate each item
       return unless schema['items']
@@ -196,19 +193,13 @@ class SchemaValidator
       end
 
       # Check minLength
-      if schema['minLength'] && data.length < schema['minLength']
-        errors << "String too short at #{path}: #{data.length} < #{schema['minLength']}"
-      end
+      errors << "String too short at #{path}: #{data.length} < #{schema['minLength']}" if schema['minLength'] && data.length < schema['minLength']
 
       # Check maxLength
-      if schema['maxLength'] && data.length > schema['maxLength']
-        errors << "String too long at #{path}: #{data.length} > #{schema['maxLength']}"
-      end
+      errors << "String too long at #{path}: #{data.length} > #{schema['maxLength']}" if schema['maxLength'] && data.length > schema['maxLength']
 
       # Check pattern (basic check)
-      if schema['pattern'] && !data.match?(Regexp.new(schema['pattern']))
-        errors << "String does not match pattern at #{path}"
-      end
+      errors << "String does not match pattern at #{path}" if schema['pattern'] && !data.match?(Regexp.new(schema['pattern']))
 
       # Check enum
       return unless schema['enum'] && !schema['enum'].include?(data)
@@ -223,9 +214,7 @@ class SchemaValidator
       end
 
       # Check minimum
-      if schema['minimum'] && data < schema['minimum']
-        errors << "Integer too small at #{path}: #{data} < #{schema['minimum']}"
-      end
+      errors << "Integer too small at #{path}: #{data} < #{schema['minimum']}" if schema['minimum'] && data < schema['minimum']
 
       # Check maximum
       return unless schema['maximum'] && data > schema['maximum']
@@ -240,9 +229,7 @@ class SchemaValidator
       end
 
       # Similar to integer but allows floats
-      if schema['minimum'] && data < schema['minimum']
-        errors << "Number too small at #{path}: #{data} < #{schema['minimum']}"
-      end
+      errors << "Number too small at #{path}: #{data} < #{schema['minimum']}" if schema['minimum'] && data < schema['minimum']
 
       return unless schema['maximum'] && data > schema['maximum']
 

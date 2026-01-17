@@ -10,7 +10,7 @@ class SchemaLoader
   class << self
     # Load the complete schemas data
     def load_schemas
-      @schemas ||= JSON.parse(File.read(SCHEMAS_FILE, encoding: 'UTF-8'))
+      @load_schemas ||= JSON.parse(File.read(SCHEMAS_FILE, encoding: 'UTF-8'))
     end
 
     # Get the main API schema (index 3 - Main Integration API) which contains most endpoints
