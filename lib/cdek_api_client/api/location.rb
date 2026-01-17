@@ -37,23 +37,23 @@ module CDEKApiClient
         use_live_data ? @client.request('get', 'deliverypoints') : read_data_from_file('offices_mapping.json')
       end
 
-      # Retrieves a list of postal codes.
+      # Retrieves a list of postal codes for a specific city.
       #
-      # @param city_code [String, nil] the city code to filter postal codes.
+      # @param city_code [String] the city code to filter postal codes.
       # @param use_live_data [Boolean] whether to use live data or cached data.
       # @return [Array<Hash>] list of postal codes.
-      def postal_codes(city_code = nil, use_live_data: false)
-        if use_live_data
-          if city_code
-            @client.request('get',
-                            "location/postalcodes?code=#{city_code}")
-          else
-            @client.request('get',
-                            'location/postalcodes')
-          end
-        else
-          read_data_from_file('postal_codes_mapping.json')
+      def postal_codes(city_code, use_live_data: false)
+        if city_code.nil? || (city_code.respond_to?(:empty?) && city_code.empty?)
+          raise ArgumentError,
+                'city_code is required'
         end
+
+        if use_live_data
+          response = @client.request('get', "location/postalcodes?code=#{city_code}")
+        else
+          response = read_data_from_file("postal_codes_#{city_code}_mapping.json")
+        end
+response.is_a?(Hash) && response.key?('postal_codes') ? response['postal_codes'] : response
       end
 
       private
@@ -64,7 +64,7 @@ module CDEKApiClient
       # @return [Hash] the parsed JSON data from the file.
       def read_data_from_file(filename)
         file_path = File.join('data', filename)
-        JSON.parse(File.read(file_path))
+        JSON.parse(File.read(file_path, encoding: 'UTF-8'))
       rescue StandardError => e
         @client.logger.error("Failed to read data from file: #{e.message}")
         { 'error' => e.message }

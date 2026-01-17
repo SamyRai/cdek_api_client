@@ -2,86 +2,45 @@
 
 require 'spec_helper'
 require 'cdek_api_client'
-require 'faker'
+require_relative '../../support/schema_loader'
+require_relative '../../support/schema_driven_generator'
+require_relative '../../support/schema_validator'
+require_relative '../../support/contract_tester'
+require_relative '../../support/entity_factory'
 
-RSpec.describe CDEKApiClient::API::Order, :vcr do
+RSpec.describe CDEKApiClient::API::Order do
   include ClientHelper
 
   let(:order) { client.order }
 
-  let(:recipient) do
-    CDEKApiClient::Entities::Recipient.new(
-      name: Faker::Name.name,
-      phones: [{ number: Faker::PhoneNumber.cell_phone_in_e164 }],
-      email: Faker::Internet.email
-    )
-  end
-
-  let(:sender) do
-    CDEKApiClient::Entities::Sender.new(
-      name: Faker::Name.name,
-      phones: [{ number: Faker::PhoneNumber.cell_phone_in_e164 }],
-      email: Faker::Internet.email
-    )
-  end
-
-  let(:item) do
-    CDEKApiClient::Entities::Item.new(
-      name: Faker::Commerce.product_name,
-      ware_key: Faker::Alphanumeric.alphanumeric(number: 5),
-      payment: CDEKApiClient::Entities::Payment.new(value: Faker::Commerce.price(range: 10..1000).to_i,
-                                                    currency: 'RUB'),
-      cost: Faker::Commerce.price(range: 10..1000).to_i,
-      weight: Faker::Number.between(from: 100, to: 5000),
-      amount: Faker::Number.between(from: 1, to: 10)
-    )
-  end
-
-  let(:package) do
-    CDEKApiClient::Entities::Package.new(
-      number: Faker::Alphanumeric.alphanumeric(number: 10),
-      weight: Faker::Number.between(from: 100, to: 5000),
-      length: Faker::Number.between(from: 10, to: 100),
-      width: Faker::Number.between(from: 10, to: 100),
-      height: Faker::Number.between(from: 10, to: 100),
-      items: [item],
-      comment: Faker::Lorem.sentence
-    )
+  # Schema-driven test data for order creation
+  let(:raw_order_data) do
+    SchemaDrivenGenerator.generate_request('/v2/orders', 'post') || {}
   end
 
   let(:order_data) do
-    CDEKApiClient::Entities::OrderData.new(
-      type: 1,
-      number: Faker::Alphanumeric.alphanumeric(number: 10),
-      tariff_code: Faker::Number.between(from: 1, to: 10),
-      from_location: CDEKApiClient::Entities::Location.new(code: 16_584, city: Faker::Address.city,
-                                                           address: Faker::Address.full_address),
-      to_location: CDEKApiClient::Entities::Location.new(code: 16_584, city: Faker::Address.city,
-                                                         address: Faker::Address.full_address),
-      recipient:,
-      sender:,
-      packages: [package],
-      comment: Faker::Lorem.sentence,
-      services: [
-        CDEKApiClient::Entities::Service.new(code: 'INSURANCE', price: Faker::Commerce.price(range: 10..1000).to_i,
-                                             name: Faker::Commerce.product_name)
-      ]
-    )
+    EntityFactory.create_order_data(raw_order_data)
   end
 
   describe '#create' do
     subject(:response) { order.create(order_data) }
 
+    it 'request data conforms to schema' do
+      result = SchemaValidator.validate_request('/v2/orders', 'post', raw_order_data)
+      expect(result[:valid]).to be true
+    end
+
     it 'creates an order successfully' do
-      VCR.use_cassette('create_order') do
-        expect(response).not_to include('error')
-      end
+      expect(response).not_to include('error')
     end
 
     it 'has an accepted state' do
-      VCR.use_cassette('create_order') do
-        expect(response['requests'].first['state']).to eq('ACCEPTED')
-      end
+      expect(response['requests'].first['state']).to eq('ACCEPTED')
+    end
+
+    it 'create response conforms to schema' do
+      result = SchemaValidator.validate_response('/v2/orders', 'post', 202, response)
+      expect(result[:valid]).to be true
     end
   end
 
@@ -89,21 +48,94 @@ RSpec.describe CDEKApiClient::API::Order, :vcr do
     subject(:response) { order.track(order_uuid) }
 
     let(:order_uuid) do
-      response = VCR.use_cassette('create_order') do
-        order.create(order_data)
-      end
+      response = order.create(order_data)
       response['entity']['uuid']
     end
 
     it 'tracks an order successfully' do
-      VCR.use_cassette('track_order') do
-        expect(response).not_to include('error')
-      end
+      expect(response).not_to include('error')
     end
 
     it 'includes the correct order uuid' do
-      VCR.use_cassette('track_order') do
-        expect(response['entity']).to include('uuid' => order_uuid)
+      expect(response['entity']).to include('uuid' => order_uuid)
+    end
+
+    it 'track response conforms to schema' do
+      result = SchemaValidator.validate_response('/v2/orders/{uuid}', 'get', 200, response)
+      expect(result[:valid]).to be true
+    end
+  end
+
+  describe '#delete' do
+    it 'responds to delete method' do
+      expect(order).to respond_to(:delete)
+    end
+
+    it 'accepts order uuid parameter' do
+      expect { order.delete('12345678-1234-5678-9012-123456789abc') }.not_to raise_error
+    end
+  end
+
+  describe '#cancel' do
+    it 'responds to cancel method' do
+      expect(order).to respond_to(:cancel)
+    end
+
+    it 'accepts order uuid parameter' do
+      expect { order.cancel('12345678-1234-5678-9012-123456789abc') }.not_to raise_error
+    end
+  end
+
+  describe '#update' do
+    it 'responds to update method' do
+      expect(order).to respond_to(:update)
+    end
+
+    it 'accepts order data parameter' do
+      expect { order.update(order_data) }.not_to raise_error
+    end
+  end
+
+  describe '#get_by_cdek_number' do
+    it 'responds to get_by_cdek_number method' do
+      expect(order).to respond_to(:get_by_cdek_number)
+    end
+
+    it 'accepts cdek number parameter' do
+      expect { order.get_by_cdek_number('123456789') }.not_to raise_error
+    end
+  end
+
+  describe '#get_by_im_number' do
+    it 'responds to get_by_im_number method' do
+      expect(order).to respond_to(:get_by_im_number)
+    end
+
+    it 'accepts im number parameter' do
+      expect { order.get_by_im_number('test-order-123') }.not_to raise_error
+    end
+  end
+
+  describe 'API Contract Tests' do
+    context 'with order creation' do
+      it 'maintains create order request/response contract' do
+        test_api_contract('/v2/orders', 'post') do |request|
+          order_data = EntityFactory.create_order_data(request)
+          order.create(order_data)
+        end
+      end
+    end
+
+    context 'with order tracking' do
+      it 'maintains track order request/response contract' do
+        # For tracking, we need a valid order UUID
+        create_response = order.create(order_data)
+        order_uuid = create_response['entity']['uuid']
+
+        # Validate the track response against schema
+        track_response = order.track(order_uuid)
+        result = SchemaValidator.validate_response('/v2/orders/{uuid}', 'get', 200, track_response)
+        expect(result[:valid]).to be true
       end
     end
   end

@@ -38,7 +38,7 @@ module CDEKApiClient
         self.class.validations.each do |attribute, rule|
           value = send(attribute)
           validate_presence(attribute, value, rule)
-          validate_type(attribute, value, rule)
+          validate_type(attribute, value, rule) unless value.nil?
         end
       end
 
@@ -160,6 +160,8 @@ module CDEKApiClient
       # @param rule [Hash] the validation rule.
       # @raise [RuntimeError] if the validation fails.
       def validate_hash(_attribute, hash, rule)
+        return unless rule[:schema]
+
         rule[:schema].each do |attr, validation_rule|
           value = hash[attr]
           validate_presence(attr, value, validation_rule)

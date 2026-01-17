@@ -9,7 +9,7 @@
 #
 # See https://docs.rubocop.org/rubocop/configuration
 
-require: rubocop-rspec
+plugins: rubocop-rspec
 
 AllCops:
   NewCops: enable

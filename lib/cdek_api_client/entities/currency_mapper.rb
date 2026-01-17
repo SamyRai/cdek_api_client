@@ -29,11 +29,14 @@ module CDEKApiClient
 
       # Converts a currency code to its corresponding integer representation.
       #
-      # @param currency [String] the currency code to convert.
+      # @param currency [String, Integer] the currency code (string like 'RUB') or integer code to validate.
       # @return [Integer] the integer representation of the currency code.
       # @raise [ArgumentError] if the currency code is invalid.
       def self.to_code(currency)
-        CURRENCY_CODES[currency] || (raise ArgumentError, "Invalid currency code: #{currency}")
+        return currency if currency.is_a?(Integer) && CURRENCY_CODES.value?(currency)
+        return CURRENCY_CODES[currency] if currency.is_a?(String) && CURRENCY_CODES.key?(currency)
+
+        raise ArgumentError, "Invalid currency code: #{currency}"
       end
     end
   end

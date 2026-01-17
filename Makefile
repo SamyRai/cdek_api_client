@@ -34,12 +34,12 @@ push:
 # Build the docker image
 build:
 	@echo "Building the docker image..."
-	sudo docker-compose build
+	docker compose build
 
 # Run tests
 test:
 	@echo "Running tests..."
-	sudo docker-compose run --rm app
+	docker compose run --rm app
 
 # Clean up generated files
 clean:

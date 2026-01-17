@@ -4,43 +4,62 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'logger'
+require_relative 'config'
+require_relative 'api/courier'
 require_relative 'api/location'
 require_relative 'api/order'
+require_relative 'api/payment'
+require_relative 'api/print'
 require_relative 'api/tariff'
 require_relative 'api/webhook'
+require_relative 'entities/auth_response'
+require_relative 'entities/auth_error_response'
 
 module CDEKApiClient
   # Client class for interacting with the CDEK API.
   class Client
-    BASE_URL = ENV.fetch('CDEK_API_URL', 'https://api.edu.cdek.ru/v2')
-    TOKEN_URL = "#{BASE_URL}/oauth/token".freeze
-
+    # @return [String] the base API URL
+    attr_reader :base_url
     # @return [String] the access token for API authentication.
     attr_reader :token
     # @return [Logger] the logger instance.
     attr_reader :logger
-    # @return [CDEKApiClient::Order] the order API interface.
-    attr_reader :order
+    # @return [CDEKApiClient::Courier] the courier API interface.
+    attr_reader :courier
     # @return [CDEKApiClient::Location] the location API interface.
     attr_reader :location
+    # @return [CDEKApiClient::Order] the order API interface.
+    attr_reader :order
+    # @return [CDEKApiClient::Payment] the payment API interface.
+    attr_reader :payment
+    # @return [CDEKApiClient::Print] the print API interface.
+    attr_reader :print
     # @return [CDEKApiClient::Tariff] the tariff API interface.
     attr_reader :tariff
     # @return [CDEKApiClient::Webhook] the webhook API interface.
     attr_reader :webhook
 
-    # Initializes the client with API credentials and logger.
+    # Initializes the client with API credentials and configuration.
     #
     # @param client_id [String] the client ID.
     # @param client_secret [String] the client secret.
+    # @param environment [Symbol, String] the API environment (:production or :demo).
+    #   Defaults to :demo or value from CDEK_API_ENV environment variable.
+    # @param base_url [String] custom API base URL (overrides environment).
+    #   Defaults to value from CDEK_API_URL environment variable or environment default.
     # @param logger [Logger] the logger instance.
-    def initialize(client_id, client_secret, logger: Logger.new($stdout))
+    def initialize(client_id, client_secret, environment: nil, base_url: nil, logger: Logger.new($stdout))
       @client_id = client_id
       @client_secret = client_secret
+      @base_url = Config.base_url(environment: environment, custom_url: base_url)
       @logger = logger
       @token = authenticate
 
-      @order = CDEKApiClient::API::Order.new(self)
+      @courier = CDEKApiClient::API::Courier.new(self)
       @location = CDEKApiClient::API::Location.new(self)
+      @order = CDEKApiClient::API::Order.new(self)
+      @payment = CDEKApiClient::API::Payment.new(self)
+      @print = CDEKApiClient::API::Print.new(self)
       @tariff = CDEKApiClient::API::Tariff.new(self)
       @webhook = CDEKApiClient::API::Webhook.new(self)
     end
@@ -50,16 +69,49 @@ module CDEKApiClient
     # @return [String] the access token.
     # @raise [StandardError] if authentication fails.
     def authenticate
-      uri = URI(TOKEN_URL)
-      response = Net::HTTP.post_form(uri, {
-                                       grant_type: 'client_credentials',
-                                       client_id: @client_id,
-                                       client_secret: @client_secret
-                                     })
+      uri = URI(Config.token_url(custom_url: @base_url))
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
 
-      raise "Error getting token: #{response.body}" unless response.is_a?(Net::HTTPSuccess)
+      request = Net::HTTP::Post.new(uri)
+      request.set_form_data(
+        'grant_type' => 'client_credentials',
+        'client_id' => @client_id,
+        'client_secret' => @client_secret
+      )
 
-      JSON.parse(response.body)['access_token']
+      response = http.request(request)
+
+      case response
+      when Net::HTTPSuccess
+        begin
+          data = JSON.parse(response.body)
+          auth_response = CDEKApiClient::Entities::AuthResponse.new(
+            access_token: data['access_token'],
+            token_type: data['token_type'],
+            expires_in: data['expires_in'],
+            scope: data['scope'],
+            jti: data['jti']
+          )
+          @logger.info("Successfully authenticated, token expires in #{auth_response.expires_in} seconds")
+          auth_response.access_token
+        rescue JSON::ParserError => e
+          raise "Failed to parse authentication response: #{e.message}"
+        rescue ArgumentError => e
+          raise "Invalid authentication response format: #{e.message}"
+        end
+      else
+        begin
+          error_data = JSON.parse(response.body)
+          error_response = CDEKApiClient::Entities::AuthErrorResponse.new(
+            error: error_data['error'],
+            error_description: error_data['error_description']
+          )
+          raise "Authentication failed: #{error_response.error} - #{error_response.error_description}"
+        rescue JSON::ParserError, ArgumentError
+          raise "Authentication failed with HTTP #{response.code}: #{response.body}"
+        end
+      end
     end
 
     # Makes an HTTP request to the API.
@@ -67,9 +119,11 @@ module CDEKApiClient
     # @param method [String] the HTTP method (e.g., 'get', 'post').
     # @param path [String] the API endpoint path.
     # @param body [Hash, nil] the request body.
+    # @param query [Hash, nil] the query parameters.
     # @return [Hash, Array] the parsed response.
-    def request(method, path, body: nil)
-      uri = URI("#{BASE_URL}/#{path}")
+    def request(method, path, body: nil, query: nil)
+      uri = URI("#{@base_url}/#{path}")
+      uri.query = URI.encode_www_form(query) if query
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = build_request(method, uri, body)

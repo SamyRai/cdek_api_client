@@ -23,12 +23,12 @@ RSpec.describe CDEKApiClient::Client do
 
     context 'when authentication fails' do
       before do
-        stub_request(:post, 'https://api.edu.cdek.ru/v2/oauth/token')
+        stub_request(:post, CDEKApiClient::Config.token_url)
           .to_return(status: 500, body: 'Internal Server Error')
       end
 
       it 'raises an error' do
-        expect { client }.to raise_error(RuntimeError, 'Error getting token: Internal Server Error')
+        expect { client }.to raise_error(RuntimeError, 'Authentication failed with HTTP 500: Internal Server Error')
       end
     end
   end
